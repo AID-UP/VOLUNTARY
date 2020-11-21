@@ -21,8 +21,9 @@
               "apps/voluntary/src/favicon.ico",
               "apps/voluntary/src/assets"
             ],
-            "styles": ["apps/voluntary/src/styles.css"],
-            "scripts": []
+            "styles": ["apps/voluntary/src/styles.css"
+            ],
+            "scripts": [ ]
           },
           "configurations": {
             "production": {
