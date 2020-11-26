@@ -1,6 +1,6 @@
 import {VoluntaryModel} from '../shared/voluntary.model';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Injectable} from '@angular/core';
+import { Injectable, Pipe } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { map, retry, catchError } from 'rxjs/operators';
 
@@ -11,7 +11,13 @@ export class VoluntaryService {
     //public url: string = `http://localhost:3000/volunteers?`;
     public url: string = `http://localhost:3000`;
 
-    constructor(private http:HttpClient){};
+    constructor(private http:HttpClient){}
+
+    public getVolunteers2():Observable<VoluntaryModel[]>{
+        return this.http.get(`http://localhost:3333/api/volunteers`)
+        .pipe(retry(10))
+        .pipe(map((resposta:any) => resposta))
+    }
 
     // pega todos os voluntários
     public getVolunteers():Promise<VoluntaryModel[]>{

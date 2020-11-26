@@ -6,11 +6,12 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MainComponent } from './main/main.component';
-import { HttpClientModule} from '@angular/common/http'
+import { HttpClientModule} from '@angular/common/http';
+
 
 import { MypageComponent } from './mypage/mypage.component';
 import { Erro404Component } from './erro404/erro404.component';
-import { DataIdadePipe } from './pipes/data-idade.pipe'
+import { DataIdadePipe } from './pipes/data-idade.pipe';
 import { AppFormsModule } from './app-forms/app-forms.module';
 import { FiltrosComponent } from './app-forms/filtros/filtros.component';
 import { ImgUrlPipe } from './pipes/img-url.pipe';
@@ -33,9 +34,8 @@ import { ImgUrlPipe } from './pipes/img-url.pipe';
     AppRoutingModule,
     HttpClientModule,
     RouterModule, 
-   
-
-  ],
+    
+    ],
   providers: [],
   bootstrap: [AppComponent],
   exports: [
