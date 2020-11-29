@@ -28,12 +28,6 @@ export class MainComponent implements OnInit {
       .then((resposta: VoluntaryModel[]) => (this.volunteers = resposta))
       .catch((err) => console.log('ERRO', err));
 
-    // this.VoluntaryService.getVolunteers2().subscribe(
-    //     (resposta: VoluntaryModel[]) => (this.volunteers = resposta),
-    //     (error: any) => console.log(error),
-    //   () => console.log('Evento concluído')
-    //   );
-
     this.volunteersObservable = this.subjectPesquisa
       .pipe(debounceTime(1000))
       .pipe(distinctUntilChanged())
