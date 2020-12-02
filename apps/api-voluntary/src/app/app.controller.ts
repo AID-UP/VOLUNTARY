@@ -1,4 +1,13 @@
-import { Controller, Get } from '@nestjs/common';
+import { VoluntaryModelB } from './voluntary.model';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 
 import { AppService } from './app.service';
 
@@ -6,29 +15,31 @@ import { AppService } from './app.service';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get() 
-  findAll() {
-    return this.appService.findAll();
-    
+  @Get()
+  async getAll() {
+    return this.appService.getAll();
+  }
+  @Get(':id')
+  async getById(@Param('id') id: number): Promise<VoluntaryModelB> {
+    return this.appService.getById(id);
   }
 
-  // @Post()
-  // create(@Body() createUserDto: CreateUserDto) {
-  //   return this.usersService.create(createUserDto);
-  // }
+  @Post()
+  async create(@Body() voluntary: VoluntaryModelB): Promise<VoluntaryModelB> {
+    return this.appService.create(voluntary);
+  }
 
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.usersService.findOne(+id);
-  // }
+  @Put(':id')
+  async update(
+    @Param('id') id: number,
+    @Body() voluntary: VoluntaryModelB
+  ): Promise<VoluntaryModelB> {
+    voluntary.id = id;
+    return this.appService.update(voluntary);
+  }
 
-  // @Put(':id')
-  // update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-  //   return this.usersService.update(+id, updateUserDto);
-  // }
-
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.usersService.remove(+id);
-  // }
+  @Delete(':id')
+  async Delete(@Param('id') id: number) {
+    return this.appService.delete(id);
+  }
 }
