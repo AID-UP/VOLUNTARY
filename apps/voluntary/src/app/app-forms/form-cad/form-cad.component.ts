@@ -1,3 +1,4 @@
+import { VoluntaryModelB } from './../../../../../api-voluntary/src/app/voluntary.model';
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { FormGroup, FormBuilder, NgForm, Validators } from '@angular/forms';
 import { VoluntaryService } from 'src/app/services/voluntary.service';
@@ -12,8 +13,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class FormCadComponent implements OnInit, OnChanges {
   public formulario: FormGroup; // formulario em questão
+  // tslint:disable-next-line: max-line-length
   public idVoluntary: number = this.route.snapshot.params.id; // se o formulario for acessado pelo perfil do voluntário essa variável recebe o id do voluntario
-  public VoluntaryData // e o formulario for acessado pelo perfil do voluntário essa variável recebe os dados do voluntario em questão, o do no id
+  public VoluntaryData; // se o formulario for acessado pelo perfil do voluntário essa variável recebe os dados do voluntario em questão, o do no id
   public estados = {
     // estados para serem populados no select
 
@@ -45,17 +47,17 @@ export class FormCadComponent implements OnInit, OnChanges {
     Sergipe: 'SE',
     Tocantins: 'TO',
   };
-  campoForm: any
+  campoForm: any;
   pathImg: any;
 
   constructor(
     private voluntaryService: VoluntaryService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    console.log("id que foi restgatado da uri", this.idVoluntary)
+    console.log('id que foi resgatado da uri', this.idVoluntary);
     this.formulario = this.formBuilder.group({
       id: [null],
       nome: [null, [Validators.required, Validators.minLength(3)]],
@@ -100,60 +102,60 @@ export class FormCadComponent implements OnInit, OnChanges {
       dataCad: [null],
     });
 
-    this.PopulaDataVoluntary(this.idVoluntary)
-
-
+    if(this.idVoluntary){
+      this.PopulaDataVoluntary(this.idVoluntary);
+    }
   }
-  ngOnChanges(){
-    
-  }
+  ngOnChanges() {}
   getPathImage(event) {
-   // console.log("nome puro",event.path[0].value)
- 
-    let path = event.target.value
-    let splitPath = path.split("\\")
-    let nomeArquivo = splitPath[2]
-    let pathAjustado = `/mnt/C/Users/Bruno/Projetos/Angular/voluntary/src/assets/${nomeArquivo}`
-    this.pathImg = pathAjustado.toString()
-    console.log(this.pathImg)
+    // console.log("nome puro",event.path[0].value)
+
+    const path = event.target.value;
+    const splitPath = path.split('\\');
+    const nomeArquivo = splitPath[2];
+    const pathAjustado = `/mnt/C/Users/Bruno/Projetos/Angular/voluntary/src/assets/${nomeArquivo}`;
+    this.pathImg = pathAjustado.toString();
+    console.log(this.pathImg);
   }
 
   onSubmit() {
     if (this.formulario.valid) {
       if (!this.idVoluntary) {
-        this.salveVoluntaryCTRL()
+        this.salveVoluntaryCTRL();
       } else {
-        this.UpdateVoluntaryCTRL(this.formulario.value)
-        console.log("dados do voluntario que foram enviado para o service", this.VoluntaryData)
-        console.log("dados que sairam do formulario e estão sendo enviados", this.formulario.value)
-
-
+        this.UpdateVoluntaryCTRL(this.formulario.value);
+        console.log(
+          'dados do voluntario que foram enviado para o service',
+          this.VoluntaryData
+        );
+        console.log(
+          'dados que sairam do formulario e estão sendo enviados',
+          this.formulario.value
+        );
       }
     } else {
       console.log('formulario invalido');
-      Object.keys(this.formulario.controls).forEach(campo => {
-        const controle = this.formulario.get(campo)
-        controle.markAsTouched()
-
-
-
-      })
+      Object.keys(this.formulario.controls).forEach((campo) => {
+        const controle = this.formulario.get(campo);
+        controle.markAsTouched();
+      });
     }
   }
-
+  
+  
   PopulaDataVoluntary(idVoluntary) {
-    this.voluntaryService.getVolunteersPorId(idVoluntary) // pega esse id e busca os dados dele no banco
-      .then((resposta: VoluntaryModel) => {
+    this.voluntaryService
+      .getVolunteersPorId(idVoluntary) // pega esse id e busca os dados dele no banco
+      .then((resposta: VoluntaryModelB) => {
         this.VoluntaryData = resposta; // pega a resposta dos dados e coloca dentro de uma variável chamada voluntary
-        console.log("o que foi pego do banco de dados", this.VoluntaryData)
+        console.log('o que foi pego do banco de dados', this.VoluntaryData);
         this.populaDadosForm(this.VoluntaryData); // chama o método e passa todos os dados desse voluntário para que ele popule ele dentro do formulario
-
-      })
+      });
   }
   //atualiza os dados dos
   public UpdateVoluntaryCTRL(VoluntaryDataFormUpdated) {
-
-    this.voluntaryService.updateVoluntaryID(VoluntaryDataFormUpdated)
+    this.voluntaryService
+      .updateVoluntaryID(VoluntaryDataFormUpdated)
       .subscribe((voluntary) =>
         alert(`Os dados do ${voluntary.nome} foram salvos com sucesso`)
       );
@@ -172,14 +174,15 @@ export class FormCadComponent implements OnInit, OnChanges {
     }
   }
 
-
   // FUNÇÕES DE VALIDAÇÃO DE FORMULÁRIO
 
   public aplicaCss(campo) {
-
     return {
-      incorreto: this.formulario.get(campo).invalid && (this.formulario.get(campo).touched || this.formulario.get(campo).dirty),
-      correto: this.formulario.get(campo).valid
+      incorreto:
+        this.formulario.get(campo).invalid &&
+        (this.formulario.get(campo).touched ||
+          this.formulario.get(campo).dirty),
+      correto: this.formulario.get(campo).valid,
     };
   }
 
@@ -224,10 +227,9 @@ export class FormCadComponent implements OnInit, OnChanges {
       diponivel: dataVoluntary.diponivel,
       outrasInformacoes: dataVoluntary.outrasInformacoes,
       email: dataVoluntary.email,
-       imgUrl: dataVoluntary.imgUrl,
+      imgUrl: dataVoluntary.imgUrl,
       dataCad: dataVoluntary.dataCad,
     });
-
   }
 }
 

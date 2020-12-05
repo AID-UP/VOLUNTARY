@@ -14,13 +14,6 @@ export class VoluntaryService {
 
   constructor(private http: HttpClient) {}
 
-//   public getVolunteers2(): Observable<VoluntaryModel[]> {
-//     return this.http
-//       .get('/api/volunteers')
-//       .pipe(retry(10))
-//       .pipe(map((resposta: any) => resposta));
-//   }
-
   // pega todos os voluntários
   public getVolunteers(): Promise<VoluntaryModel[]> {
     return this.http
@@ -39,7 +32,7 @@ export class VoluntaryService {
       .catch((err) => console.log('ERRO', err));
   }
 
-  // CAMPO DE BUSCA na tela principal
+  // CAMPO DE BUSCA na tela principal (precisa de ajuste)
   public pesquisaVoluntary(termo: string): Observable<VoluntaryModel[]> {
     return this.http
       .get(`/api/volunteers?nome_like=${termo}`)
@@ -47,7 +40,7 @@ export class VoluntaryService {
       .pipe(map((resposta: any) => resposta));
   }
 
-  // Headers par afazer o post de o put
+  // Headers para fazer o post de o put
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
