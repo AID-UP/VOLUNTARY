@@ -65,7 +65,7 @@
     "@types/jest": "^26.0.15",
     "@types/node": "~8.9.4",
     "@types/uuid": "^8.3.0",
-    "codelyzer": "~5.0.1",
+    "codelyzer": "~6.0.1",
     "cypress": "^5.5.0",
     "dotenv": "6.2.0",
     "eslint": "7.10.0",
