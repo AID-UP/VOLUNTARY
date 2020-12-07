@@ -1,45 +1,96 @@
-
-
 /* CAMPOS DE VALIDAÇÃO DE FORMULÁRIO */
-.incorreto{
-    transition:0.5s;
-    border: 0 none;
-    /*border-bottom: 3px solid rgb(155, 3, 3);*/
-    /* border-radius:  3px; */
-    /* padding-bottom: 1px; */
+.incorreto {
+  transition: 0.5s;
+  border: 0 none;
+  /*border-bottom: 3px solid rgb(155, 3, 3);*/
+  /* border-radius:  3px; */
+  /* padding-bottom: 1px; */
 
+  transition: 0.3s;
+  border-left: 5px solid rgb(128, 0, 0);
+  border-radius-left: 3px;
+}
 
-    transition:0.3s;
-    border-left: 5px solid rgb(128, 0, 0);
-    border-radius-left: 3px;
-    }
-
-    /* select:focus, input:focus,textarea:focus{
+/* select:focus, input:focus,textarea:focus{
       transition:0.3s;
       border: 0 none;
       border-left: 5px solid green;
       border-radius-left: 3px;
   } */
 
-
-.correto:focus{
-    transition: 5s;
-    border: 0 none;
-    border-bottom: 2px solid green;
-    border-radius: 0;
+.correto:focus {
+  transition: 5s;
+  border: 0 none;
+  border-bottom: 2px solid green;
+  border-radius: 0;
 }
-#feminino, #masculino{
+#feminino,
+#masculino {
   border: 1px solid rgb(197, 197, 197);
   width: 20px;
-  height:20px;
+  height: 20px;
 }
 
-.text-formInvalid{
+.text-formInvalid {
   color: rgb(128, 19, 19);
-  line-height:1px;
-
+  line-height: 1px;
 }
 
-.form-check-input, .form-check-label{
-  margin-left:15px;
+.form-check-input,
+.form-check-label {
+  margin-left: 15px;
+}
+
+
+
+.form-switch label {
+  display: flex;
+  margin-left: 70px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.form-switch input{
+  padding-left: 25px !important;
+  padding-bottom: 15px !important;
+}
+
+[type='file']::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+[type='file']::before {
+  content: 'Selecione um arquivo';
+  display: inline-block;
+  background-image: url(./../../../assets/001-upload.svg);
+  background-size: 15px;
+  background-attachment:local ;
+  background-position-x: 145px;
+  background-position-y:center ;
+  background-repeat: no-repeat ;
+  border: 1px solid rgb(185, 184, 184);
+  border-radius: 3px;
+  padding: 10px 8px;
+  padding-right: 40px;
+  margin: 3px 0px;
+  color:#3b3b3b;
+  margin-right: -105px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+
+  font-weight: 480;
+  font-size: 10pt;
+}
+
+[type='file']:hover::before {
+  border-color: #157347;
+  background-size: 18px;
+  transition: 0.3s;
+}
+[type='file']:active::before {
+  background: #157347;
+  background-size: 18px;
+  transition: 0.5s;
 }

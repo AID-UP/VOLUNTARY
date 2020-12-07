@@ -16,13 +16,19 @@ fieldset{
     box-shadow: none; 
   }
 
-
-select:focus, input:focus,textarea:focus :not(type='radio'){
+input,select,textarea{
+    height: 50px;
+    border: 0 none;
+    border-bottom: 1px solid silver ;
+    border-radius:3px;
+    box-shadow: 0 0 0 0;
+    outline: 10;
+}
+select:focus, input:focus,textarea:focus{
     transition:0.3s;
     border: 0 none;
     border-left: 5px solid green;
     border-radius-left: 3px;
-    
 }
 
 
@@ -36,5 +42,3 @@ fieldset:hover{
     display: flex;
     flex-wrap: wrap;
 }
-
-/* Esconde o input */

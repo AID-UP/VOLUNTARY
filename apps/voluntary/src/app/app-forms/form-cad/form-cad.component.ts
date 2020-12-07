@@ -5,13 +5,14 @@ import { VoluntaryService } from 'src/app/services/voluntary.service';
 import { VoluntaryModel } from 'src/app/shared/voluntary.model';
 import { ActivatedRoute } from '@angular/router';
 
+
 @Component({
   selector: 'app-form-cad',
   templateUrl: './form-cad.component.html',
   styleUrls: ['../../app.component.css', './form-cad.component.css'],
   providers: [VoluntaryService],
 })
-export class FormCadComponent implements OnInit, OnChanges {
+export class FormCadComponent implements OnInit {
   public formulario: FormGroup; // formulario em questão
   // tslint:disable-next-line: max-line-length
   public idVoluntary: number = this.route.snapshot.params.id; // se o formulario for acessado pelo perfil do voluntário essa variável recebe o id do voluntario
@@ -49,6 +50,8 @@ export class FormCadComponent implements OnInit, OnChanges {
   };
   campoForm: any;
   pathImg: any;
+  fieldsetProfissionaisFIF: boolean = false;
+  fieldsetCuidadoresFIF: boolean =  false;
 
   constructor(
     private voluntaryService: VoluntaryService,
@@ -61,52 +64,41 @@ export class FormCadComponent implements OnInit, OnChanges {
     this.formulario = this.formBuilder.group({
       id: [null],
       nome: [null, [Validators.required, Validators.minLength(3)]],
-      sexo: [null, [Validators.required]],
       dataNascimento: [null, [Validators.required]],
+      sexo: [null, [Validators.required]],
+      rua: [null],
+      numero: [null],
+      bairro: [null],
+      cidade: [null],
+      complemento: [null],
+      uf: [null],
+      CEP: [null],
       profissao: [null, [Validators.required]],
-      cepVo: [null],
-      logradouroVo: [null],
-      numeroVo: [null],
-      bairroVo: [null],
-      cidadeVo: [null],
-      ufVo: [null],
-      complementoVo: [null],
-      CEPVo: [null],
-      instituicao: [null],
-      nomeIg: [null, [Validators.required]],
-      telefoneIg: [null],
-      cepIg: [null],
-      logradouroIg: [null],
-      numeroIg: [null],
-      bairroIg: [null],
-      cidadeIg: [null],
-      complementoIg: [null],
-      ufIg: [null],
-      pastor: [null, [Validators.required]],
-      telefonePa: [null],
-      cepPa: [null],
-      logradouroPa: [null],
-      numeroPa: [null],
-      cidadePa: [null],
-      bairroPa: [null],
-      complementoPa: [null],
-      ufPa: [null],
-      servicoOferecido: [null, Validators.required],
-      disponibilidade: [null, Validators.required],
-      assiduidade: [null],
-      diponivel: [null],
-      outrasInformacoes: [null],
+      telefone: [null],
       email: [null, [Validators.required, Validators.email]],
-      telefoneVo: [null],
-      imgUrl: [this.pathImg],
+      imgUrlPrincipal: [null],
+      nomeIg: [null, [Validators.required]],
+      pastor: [null, [Validators.required]],
+      chekbox1Profissao: [false],
+      chekbox2Intercessor: [false],
+      chekbox3Cuidador: [false],
+      chekbox4:[false],
+      especialidade: [null],
+      servicoOferecido: [null],
+      imgRG: [null],
+      imgCPF: [null],
+      imgComprovResidencia: [null],
+      imgCartaIgreja: [null],
       dataCad: [null],
     });
 
-    if(this.idVoluntary){
+    if (this.idVoluntary) {
       this.PopulaDataVoluntary(this.idVoluntary);
     }
   }
-  ngOnChanges() {}
+
+  
+
   getPathImage(event) {
     // console.log("nome puro",event.path[0].value)
 
@@ -117,32 +109,38 @@ export class FormCadComponent implements OnInit, OnChanges {
     this.pathImg = pathAjustado.toString();
     console.log(this.pathImg);
   }
+  setRadioProficional(){
+  this.fieldsetProfissionaisFIF = this.formulario.value.chekbox1Profissao === true ? false : true;
+  }
+  setRadioCuidador(){
+  this.fieldsetCuidadoresFIF = this.formulario.value.chekbox3Cuidador === true ? false : true;
+  }
 
   onSubmit() {
-    if (this.formulario.valid) {
-      if (!this.idVoluntary) {
-        this.salveVoluntaryCTRL();
-      } else {
-        this.UpdateVoluntaryCTRL(this.formulario.value);
-        console.log(
-          'dados do voluntario que foram enviado para o service',
-          this.VoluntaryData
-        );
-        console.log(
-          'dados que sairam do formulario e estão sendo enviados',
-          this.formulario.value
-        );
-      }
-    } else {
-      console.log('formulario invalido');
-      Object.keys(this.formulario.controls).forEach((campo) => {
-        const controle = this.formulario.get(campo);
-        controle.markAsTouched();
-      });
-    }
+    console.log(this.formulario.value)
+    // if (this.formulario.valid) {
+    //   if (!this.idVoluntary) {
+    //     this.salveVoluntaryCTRL();
+    //   } else {
+    //     this.UpdateVoluntaryCTRL(this.formulario.value);
+    //     console.log(
+    //       'dados do voluntario que foram enviado para o service',
+    //       this.VoluntaryData
+    //     );
+    //     console.log(
+    //       'dados que sairam do formulario e estão sendo enviados',
+    //       this.formulario.value
+    //     );
+    //   }
+    // } else {
+    //   console.log('formulario invalido');
+    //   Object.keys(this.formulario.controls).forEach((campo) => {
+    //     const controle = this.formulario.get(campo);
+    //     controle.markAsTouched();
+    //   });
+    // }
   }
-  
-  
+
   PopulaDataVoluntary(idVoluntary) {
     this.voluntaryService
       .getVolunteersPorId(idVoluntary) // pega esse id e busca os dados dele no banco
@@ -177,13 +175,13 @@ export class FormCadComponent implements OnInit, OnChanges {
   // FUNÇÕES DE VALIDAÇÃO DE FORMULÁRIO
 
   public aplicaCss(campo) {
-    return {
-      incorreto:
-        this.formulario.get(campo).invalid &&
-        (this.formulario.get(campo).touched ||
-          this.formulario.get(campo).dirty),
-      correto: this.formulario.get(campo).valid,
-    };
+    // return {
+    //   incorreto:
+    //     this.formulario.get(campo).invalid &&
+    //     (this.formulario.get(campo).touched ||
+    //       this.formulario.get(campo).dirty),
+    //   correto: this.formulario.get(campo).valid,
+    // };
   }
 
   public populaDadosForm(dataVoluntary) {

@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -10,9 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { MypageComponent } from './mypage/mypage.component';
 import { Erro404Component } from './erro404/erro404.component';
-import { DataIdadePipe } from './pipes/data-idade.pipe';
 import { AppFormsModule } from './app-forms/app-forms.module';
-import { FiltrosComponent } from './app-forms/filtros/filtros.component';
 import { ImgUrlPipe } from './pipes/img-url.pipe';
 import { CommonModule } from '@angular/common';
 
@@ -24,8 +23,7 @@ import { CommonModule } from '@angular/common';
     MainComponent,
     MypageComponent,
     Erro404Component,
-    DataIdadePipe,
-    FiltrosComponent,
+
     ImgUrlPipe,
   ],
   imports: [
@@ -34,10 +32,12 @@ import { CommonModule } from '@angular/common';
     AppRoutingModule,
     HttpClientModule,
     RouterModule,
-    CommonModule
+    CommonModule, 
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
-  exports: [MainComponent],
+  exports: [MainComponent ],
 })
 export class AppModule {}

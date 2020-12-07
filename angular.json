@@ -21,8 +21,13 @@
               "apps/voluntary/src/logo.png",
               "apps/voluntary/src/assets"
             ],
-            "styles": ["apps/voluntary/src/styles.css"],
-            "scripts": []
+            "styles": [
+              "apps/voluntary/src/styles.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css"
+            ],
+            "scripts": [
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {

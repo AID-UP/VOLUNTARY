@@ -1,25 +1,30 @@
-import {VoluntaryModel} from '../shared/voluntary.model' 
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Injectable} from '@angular/core'
+import { VoluntaryModel } from '../shared/voluntary.model';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map, retry } from 'rxjs/operators'
+import { map, retry } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FiltroPersonalizadoService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http:HttpClient) { }
-
-/**
- * dentro do componente de filtros esse será o primeiro filtro, é responsável por fazer busca NA API
- */
-public buscaPorFiltro(termo:string,campo:string ):Promise<VoluntaryModel[]> {
-     return this.http.get(`http://localhost:3000/volunteers?${campo}_like=${termo}`)
-     .toPromise()
-     .then((resposta:any)=>  resposta)
-     .catch((erro)=>console.log(erro))       
-    }
+  /**
+   * dentro do componente de filtros esse será o primeiro filtro, é responsável por fazer busca NA API
+   */
+  public buscaPorFiltro(
+    termo: string,
+    campo: string
+  ): Promise<VoluntaryModel[]> {
+    return this.http
+      .get(`http://localhost:3000/volunteers?${campo}_like=${termo}`)
+      .toPromise()
+      .then((resposta: any) => resposta)
+      .catch((erro) => console.log(erro));
   }
-
-     
+}
