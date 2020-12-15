@@ -1,9 +1,9 @@
 import { Component, OnInit, Injectable, Input } from '@angular/core';
 import { VoluntaryService } from '../services/voluntary.service';
-import { VoluntaryModel } from './../shared/voluntary.model';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subject, of } from 'rxjs';
 import { switchMap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { VoluntaryModel } from '../../../../../libs/data/src/lib/data';
 
 @Component({
   selector: 'app-main',
@@ -14,6 +14,7 @@ import { switchMap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 @Injectable()
 export class MainComponent implements OnInit {
   public volunteers: VoluntaryModel[];
+  public volunteers$: Observable<VoluntaryModel[]>
   public voluntary: VoluntaryModel;
   public volunteersObservable: Observable<VoluntaryModel[]>;
   private subjectPesquisa: Subject<String> = new Subject<String>();
@@ -24,9 +25,11 @@ export class MainComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.VoluntaryService.getVolunteers()
-      .then((resposta: VoluntaryModel[]) => (this.volunteers = resposta))
-      .catch((err) => console.log('ERRO', err));
+    // this.VoluntaryService.getVolunteers().subscribe(
+    //   (resposta: VoluntaryModel[]) => (this.volunteers = resposta),
+    //   (err) => console.log('ERRO', err)
+    // )
+this.volunteers$ = this.VoluntaryService.getVolunteers();
 
     this.volunteersObservable = this.subjectPesquisa
       .pipe(debounceTime(1000))

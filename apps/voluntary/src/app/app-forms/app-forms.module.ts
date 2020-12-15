@@ -6,10 +6,9 @@ import { AppRoutingModule } from '../app-routing.module';
 import { FiltrosComponent } from './filtros/filtros.component';
 import { DataIdadePipe } from '../pipes/data-idade.pipe';
 
-
 @NgModule({
   declarations: [FiltrosComponent, FormCadComponent, DataIdadePipe],
   imports: [CommonModule, FormsModule, AppRoutingModule, ReactiveFormsModule],
-  exports:[FiltrosComponent, FormCadComponent, DataIdadePipe]
+  exports: [FiltrosComponent, FormCadComponent, DataIdadePipe],
 })
 export class AppFormsModule {}

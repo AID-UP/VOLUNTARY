@@ -1,7 +1,8 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 
 import { FiltroPersonalizadoService } from 'src/app/services/filtro-personalizado.service';
-import { VoluntaryModel } from 'src/app/shared/voluntary.model';
+import { VoluntaryModel } from '../../../../../../libs/data/src/lib/data';
+
 
 @Component({
   selector: 'app-filtros',

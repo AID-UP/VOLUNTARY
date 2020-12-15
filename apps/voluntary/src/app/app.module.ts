@@ -1,3 +1,4 @@
+import { FiltroPersonalizadoService } from './services/filtro-personalizado.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -12,8 +13,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { MypageComponent } from './mypage/mypage.component';
 import { Erro404Component } from './erro404/erro404.component';
 import { AppFormsModule } from './app-forms/app-forms.module';
-import { ImgUrlPipe } from './pipes/img-url.pipe';
+
 import { CommonModule } from '@angular/common';
+import { VoluntaryService } from './services/voluntary.service';
+
+
 
 @NgModule({
   declarations: [
@@ -24,7 +28,6 @@ import { CommonModule } from '@angular/common';
     MypageComponent,
     Erro404Component,
 
-    ImgUrlPipe,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -32,12 +35,12 @@ import { CommonModule } from '@angular/common';
     AppRoutingModule,
     HttpClientModule,
     RouterModule,
-    CommonModule, 
+    CommonModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
   ],
-  providers: [],
+  providers: [VoluntaryService, FiltroPersonalizadoService],
   bootstrap: [AppComponent],
-  exports: [MainComponent ],
+  exports: [MainComponent],
 })
 export class AppModule {}

@@ -1,4 +1,5 @@
-import { VoluntaryModel } from '../shared/voluntary.model';
+import { VoluntaryModel } from './../../../../../libs/data/src/lib/data';
+
 import {
   HttpClient,
   HttpErrorResponse,
@@ -10,32 +11,22 @@ import { map, retry, catchError } from 'rxjs/operators';
 
 @Injectable()
 export class VoluntaryService {
- 
-
+  private readonly API = ' http://localhost:3333'
   constructor(private http: HttpClient) {}
 
   // pega todos os voluntários
-  public getVolunteers(): Promise<VoluntaryModel[]> {
-    return this.http
-      .get('/api/volunteers')
-      .toPromise()
-      .then((resposta: VoluntaryModel[]) => resposta);
+  public getVolunteers(): Observable<VoluntaryModel[]> {
+    return this.http.get<VoluntaryModel[]>('/api/volunteers');
   }
   // Busca os dados do voluntário pelo seu ID
-  public getVolunteersPorId(id: number): Promise<VoluntaryModel> {
-    return this.http
-      .get(`/api/volunteers?id=${id}`)
-      .toPromise()
-      .then((resposta: any) => {
-        return resposta[0];
-      })
-      .catch((err) => console.log('ERRO', err));
+  public getVolunteersPorId(id: number): Observable<VoluntaryModel> {
+    return this.http.get<VoluntaryModel>(`/api/volunteers/${id}`);
   }
 
   // CAMPO DE BUSCA na tela principal (precisa de ajuste)
   public pesquisaVoluntary(termo: string): Observable<VoluntaryModel[]> {
     return this.http
-      .get(`/api/volunteers?nome_like=${termo}`)
+      .get(`api/volunteers/voluntary?termoBusca=${termo}`)
       .pipe(retry(10))
       .pipe(map((resposta: any) => resposta));
   }
@@ -45,27 +36,18 @@ export class VoluntaryService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
-    // CHAMADAS CONSTRUIDAS PARA RESTORNOS QUE AINDA NÃO EXISTEM NA API
+  // CHAMADAS CONSTRUIDAS PARA RESTORNOS QUE AINDA NÃO EXISTEM NA API
 
   // CADASTRO VOLUNTÁRIOS
   public saveVoluntary(voluntary: VoluntaryModel): Observable<VoluntaryModel> {
     return this.http
-      .post<VoluntaryModel>(
-        `/api/volunteers`,
-        JSON.stringify(voluntary),
-        this.httpOptions
-      )
+      .post<VoluntaryModel>(`/api/volunteers`, JSON.stringify(voluntary),this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 
   // Atualiza um voluntário
-  public updateVoluntaryID(
-    voluntary: VoluntaryModel
-  ): Observable<VoluntaryModel> {
-    return this.http
-      .put<VoluntaryModel>(
-        `/api/volunteers/${voluntary.id}`,
-        JSON.stringify(voluntary),
+  public updateVoluntaryID(voluntary: VoluntaryModel): Observable<VoluntaryModel> {
+    return this.http.put<VoluntaryModel>(`/api/volunteers/${voluntary.id}`,JSON.stringify(voluntary),
         this.httpOptions
       )
       .pipe(retry(2), catchError(this.handleError));

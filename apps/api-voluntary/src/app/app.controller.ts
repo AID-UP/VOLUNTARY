@@ -1,5 +1,8 @@
-import { VoluntaryModelB } from './voluntary.model';
+import { VoluntaryModel } from './../../../../libs/data/src/lib/data';
+
+
 import {
+  All,
   Body,
   Controller,
   Delete,
@@ -7,6 +10,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
 } from '@nestjs/common';
 
 import { AppService } from './app.service';
@@ -19,21 +23,27 @@ export class AppController {
   async getAll() {
     return this.appService.getAll();
   }
+
+  @Get('voluntary')
+  async findName(@Query() termo: string) {
+  this.appService.findName(termo);
+  }
+
   @Get(':id')
-  async getById(@Param('id') id: number): Promise<VoluntaryModelB> {
-    return this.appService.getById(id);
+  async getById(@Param('id') id: number): Promise<VoluntaryModel> {
+    return this.appService.getById(id)
   }
 
   @Post()
-  async create(@Body() voluntary: VoluntaryModelB): Promise<VoluntaryModelB> {
+  async create(@Body() voluntary: VoluntaryModel): Promise<VoluntaryModel> {
     return this.appService.create(voluntary);
   }
 
   @Put(':id')
   async update(
     @Param('id') id: number,
-    @Body() voluntary: VoluntaryModelB
-  ): Promise<VoluntaryModelB> {
+    @Body() voluntary: VoluntaryModel
+  ): Promise<VoluntaryModel> {
     voluntary.id = id;
     return this.appService.update(voluntary);
   }

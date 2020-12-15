@@ -2,21 +2,11 @@
 .incorreto {
   transition: 0.5s;
   border: 0 none;
-  /*border-bottom: 3px solid rgb(155, 3, 3);*/
-  /* border-radius:  3px; */
-  /* padding-bottom: 1px; */
-
   transition: 0.3s;
   border-left: 5px solid rgb(128, 0, 0);
   border-radius-left: 3px;
 }
 
-/* select:focus, input:focus,textarea:focus{
-      transition:0.3s;
-      border: 0 none;
-      border-left: 5px solid green;
-      border-radius-left: 3px;
-  } */
 
 .correto:focus {
   transition: 5s;
@@ -27,8 +17,7 @@
 #feminino,
 #masculino {
   border: 1px solid rgb(197, 197, 197);
-  width: 20px;
-  height: 20px;
+  
 }
 
 .text-formInvalid {
@@ -38,7 +27,8 @@
 
 .form-check-input,
 .form-check-label {
-  margin-left: 15px;
+  margin-left: 0px;
+  
 }
 
 
@@ -50,10 +40,20 @@
   flex-wrap: wrap;
 }
 
-.form-switch input{
-  padding-left: 25px !important;
-  padding-bottom: 15px !important;
+
+input, select{
+  min-width: 215px;
 }
+
+[type='radio']{
+  min-width:20px !important;
+  min-height:20px !important;
+}
+[type='checkbox']{
+  min-width:40px;
+  min-height: 25px;
+}
+
 
 [type='file']::-webkit-file-upload-button {
   visibility: hidden;
@@ -88,9 +88,39 @@
   border-color: #157347;
   background-size: 18px;
   transition: 0.3s;
+  color: #157347;
+  font-size: medium;
+  background-position-x: 170px;
 }
-[type='file']:active::before {
-  background: #157347;
+
+
+
+[type='file']:hover::before {
+  color: #157347;
   background-size: 18px;
   transition: 0.5s;
+}
+
+.fieldsetIF:active::before {
+  transition: 1s;
+}
+
+@media only screen and (max-width: 991px){
+  input, select{
+    margin: 5px 5px;
+  
+  }
+ 
+  [type='checkbox']{
+    margin: 0px 0px !important;
+  }
+  .radioSexo{
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .radioSexo div {
+    grid-column: 2;
+    min-width: 100px;
+  }
 }

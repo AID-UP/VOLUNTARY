@@ -1,32 +1,40 @@
-import { Component, OnInit, Input } from '@angular/core';
-import {VoluntaryService} from '../services/voluntary.service'
-import {VoluntaryModel} from './../shared/voluntary.model'
-import { ActivatedRoute} from '@angular/router'
-
+import { Component, OnInit } from '@angular/core';
+import { VoluntaryService } from '../services/voluntary.service';
+import { ActivatedRoute } from '@angular/router';
+import { VoluntaryModel } from '../../../../../libs/data/src/lib/data';
 
 @Component({
   selector: 'app-mypage',
   templateUrl: './mypage.component.html',
   styleUrls: ['./mypage.component.css'],
-  providers:[VoluntaryService]
+  providers: [VoluntaryService],
 })
 export class MypageComponent implements OnInit {
-
-  public volunteers:VoluntaryModel[];
-  public idVoluntary:VoluntaryModel
-
-
+ 
+  public voluntary: VoluntaryModel;
+  public idVoluntary: number;
+  img: any;
 
   constructor(
-    private VoluntaryService:VoluntaryService,
-    private route:ActivatedRoute
-    ) {}
+    private VoluntaryService: VoluntaryService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.VoluntaryService.getVolunteersPorId(this.route.snapshot.params['id'])
-    .then((resposta:VoluntaryModel)=> {
-      this.idVoluntary = resposta})
-      .catch((err)=> console.log("ERRO", err) )
+    this.getVoluntaryMyPage();
   }
 
+  public async getVoluntaryMyPage() {
+    this.idVoluntary = await this.route.snapshot.params['id'];
+    try {
+      await this.VoluntaryService.getVolunteersPorId(
+        this.idVoluntary
+      ).subscribe(
+        (resposta) => (this.voluntary = resposta),
+        (error) => error
+      );
+    } catch (error) {
+      (error) => error;
+    }
+  }
 }

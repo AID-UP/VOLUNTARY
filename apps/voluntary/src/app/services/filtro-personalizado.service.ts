@@ -1,4 +1,3 @@
-import { VoluntaryModel } from '../shared/voluntary.model';
 import {
   HttpClient,
   HttpErrorResponse,
@@ -7,6 +6,7 @@ import {
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, retry } from 'rxjs/operators';
+import { VoluntaryModel } from '../../../../../libs/data/src/lib/data';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +22,7 @@ export class FiltroPersonalizadoService {
     campo: string
   ): Promise<VoluntaryModel[]> {
     return this.http
-      .get(`http://localhost:3000/volunteers?${campo}_like=${termo}`)
+      .get(`api/volunteers/voluntary?termoBusca=${termo}`)
       .toPromise()
       .then((resposta: any) => resposta)
       .catch((erro) => console.log(erro));

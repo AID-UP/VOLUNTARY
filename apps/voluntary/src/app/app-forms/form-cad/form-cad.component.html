@@ -6,9 +6,10 @@
 
     <fieldset class="form-group">
       <h4 class="mb-4 ml-4">Voluntário</h4>
-      <div class="row m-3 mb-4">
-        <div class="col-md-7 form-floating" [ngClass]="aplicaCss('nome')">
+      <div class="row  d-flex-wrap m-3 mb-4">
+        <div class="col form-floating">
           <input
+            [ngClass]="aplicaCss('nome')"
             type="text"
             id="inputName"
             class="form-control"
@@ -26,11 +27,9 @@
             Este campo precisa ter pelo menos 3 caracteres...
           </small>
         </div>
-        <div
-          class="form-floating col-md-2"
-          [ngClass]="aplicaCss('dataNascimento')"
-        >
+        <div class="form-floating col">
           <input
+            [ngClass]="aplicaCss('dataNascimento')"
             type="date"
             id="inputLastname"
             formControlName="dataNascimento"
@@ -47,32 +46,33 @@
             insira sua data de Nascimento!
           </small>
         </div>
-        <div class="col-md-3" [ngClass]="aplicaCss('sexo')" >
-          <div class="custom-control custom-radio" >
+        <div class="col-auto radioSexo">
+          <div
+            class="custom-control custom-radio "
+            [ngClass]="aplicaCss('sexo')"
+          >
             <input
-              class="form-check-input"
-             
+              class="form-check-input mr-2"
               type="radio"
               formControlName="sexo"
               name="sexo"
               id="masculino"
               value="M"
-              
             />
-            <label class="ml-5" class="form-check-label" for="masculino">
+            <label class="" class="form-check-label" for="masculino">
               Masculino
             </label>
           </div>
           <div class="custom-control custom-radio">
             <input
-              class="form-check-input"
+              class="form-check-input mr-2"
               type="radio"
               formControlName="sexo"
               name="sexo"
               id="feminino"
               value="F"
             />
-            <label class="ml-3" class="form-check-label" for="feminino">
+            <label class="" class="form-check-label" for="feminino">
               Feminino
             </label>
           </div>
@@ -87,109 +87,113 @@
           </small>
         </div>
       </div>
+      <div formGroupName="endereco">
 
-      <div class="row m-3 mb-4">
-        <div class="form-floating campo form-group col-4">
-          <input
-            type="text"
-            class="form-control"
-            id="inputNumberC"
-            formControlName="rua"
-            placeholder="Informe o nome da sua rua"
-          />
-          <label class="ml-3" class="ml-3" for="inputNumberC">Rua</label>
+        <div class="row m-3 mb-4">
+          <div class="form-floating campo form-group col">
+            <input
+              type="text"
+              class="form-control"
+              id="inputNumberC"
+              formControlName="rua"
+              placeholder="Informe o nome da sua rua"
+            />
+            <label class="ml-3" class="ml-3" for="inputNumberC">Rua</label>
+          </div>
+          <div class="form-floating campo form-group col">
+            <input
+              type="text"
+              class="form-control"
+              id="inputNumberC"
+              formControlName="numero"
+              placeholder="nº"
+            />
+            <label class="ml-3" class="ml-3" for="inputNumberC">Número</label>
+          </div>
+          <div class="form-floating campo form-group col">
+            <input
+              type="text"
+              class="form-control"
+              formControlName="bairro"
+              id="inputBairro"
+              placeholder="Informe seu Bairro:"
+            />
+            <label class="ml-3" class="ml-3" for="inputBairro">Bairro</label>
+          </div>
+
         </div>
-        <div class="form-floating campo form-group col-2">
-          <input
-            type="text"
-            class="form-control"
-            id="inputNumberC"
-            formControlName="numero"
-            placeholder="nº"
-          />
-          <label class="ml-3" class="ml-3" for="inputNumberC">Número</label>
+
+        <div class="row m-3 mb-4">
+          <div class="form-floating campo form-group col">
+            <input
+              type="text"
+              class="form-control"
+              id="inputCity"
+              formControlName="cidade"
+              placeholder="Informe sua cidade:"
+            />
+            <label class="ml-3" class="ml-3" for="inputCity">Cidade</label>
+          </div>
+          <div class="campo form-floating form-group col">
+            <input
+              type="text"
+              class="form-control"
+              id="inputComple"
+              formControlName="complemento"
+              placeholder="Casa / Apt"
+            />
+            <label class="ml-3" for="inputComple">Complemento</label>
+          </div>
+          <div class="campo form-floating form-group col">
+            <select formControlName="uf" id="inputEstado" class="form-control">
+              <option selected value="null">Escolha Estado...</option>
+              <option value="AC">Acre</option>
+              <option value="AL">Alagoas</option>
+              <option value="AP">Amapá</option>
+              <option value="AM">Amazonas</option>
+              <option value="BA">Bahia</option>
+              <option value="CE">Ceará</option>
+              <option value="DF">Distrito Federal</option>
+              <option value="ES">Espírito Santo</option>
+              <option value="GO">Goiás</option>
+              <option value="MA">Maranhão</option>
+              <option value="MT">Mato Grosso</option>
+              <option value="MS">Mato Grosso do Sul</option>
+              <option value="MG">Minas Gerais</option>
+              <option value="PA">Pará</option>
+              <option value="PB">Paraíba</option>
+              <option value="PR">Paraná</option>
+              <option value="PE">Pernambuco</option>
+              <option value="PI">Piauí</option>
+              <option value="RJ">Rio de Janeiro</option>
+              <option value="RN">Rio Grande do Norte</option>
+              <option value="RS">Rio Grande do Sul</option>
+              <option value="RO">Rondônia</option>
+              <option value="RR">Roraima</option>
+              <option value="SC">Santa Catarina</option>
+              <option value="SP">São Paulo</option>
+              <option value="SE">Sergipe</option>
+              <option value="TO">Tocantins</option>
+            </select>
+            <label class="ml-3" for="inputEstado">Estado</label>
+          </div>
+          <div class="form-floating form-group col">
+            <input
+              type="cep"
+              class="form-control"
+              formControlName="CEP"
+              id="inputCEP"
+              placeholder="Informe seu CEP"
+            />
+            <label class="ml-3" for="inputCEP">CEP</label>
+          </div>
         </div>
-        <div class="form-floating campo form-group col-md-3">
-          <input
-            type="text"
-            class="form-control"
-            formControlName="bairro"
-            id="inputBairro"
-            placeholder="Informe seu Bairro:"
-          />
-          <label class="ml-3" class="ml-3" for="inputBairro">Bairro</label>
-        </div>
-        <div class="form-floating campo form-group col-md-3">
-          <input
-            type="text"
-            class="form-control"
-            id="inputCity"
-            formControlName="cidade"
-            placeholder="Informe sua cidade:"
-          />
-          <label class="ml-3" class="ml-3" for="inputCity">Cidade</label>
-        </div>
+
       </div>
-
       <div class="row m-3 mb-4">
-        <div class="campo form-floating form-group col-md-2">
+        <div class="form-floating form-group col">
           <input
-            type="text"
-            class="form-control"
-            id="inputComple"
-            formControlName="complemento"
-            placeholder="Casa / Apt"
-          />
-          <label class="ml-3" for="inputComple">Complemento</label>
-        </div>
-        <div class="campo form-floating form-group col-md-3">
-          <select formControlName="uf" id="inputEstado" class="form-control">
-            <option selected>Escolha Estado...</option>
-            <option value="AC">Acre</option>
-            <option value="AL">Alagoas</option>
-            <option value="AP">Amapá</option>
-            <option value="AM">Amazonas</option>
-            <option value="BA">Bahia</option>
-            <option value="CE">Ceará</option>
-            <option value="DF">Distrito Federal</option>
-            <option value="ES">Espírito Santo</option>
-            <option value="GO">Goiás</option>
-            <option value="MA">Maranhão</option>
-            <option value="MT">Mato Grosso</option>
-            <option value="MS">Mato Grosso do Sul</option>
-            <option value="MG">Minas Gerais</option>
-            <option value="PA">Pará</option>
-            <option value="PB">Paraíba</option>
-            <option value="PR">Paraná</option>
-            <option value="PE">Pernambuco</option>
-            <option value="PI">Piauí</option>
-            <option value="RJ">Rio de Janeiro</option>
-            <option value="RN">Rio Grande do Norte</option>
-            <option value="RS">Rio Grande do Sul</option>
-            <option value="RO">Rondônia</option>
-            <option value="RR">Roraima</option>
-            <option value="SC">Santa Catarina</option>
-            <option value="SP">São Paulo</option>
-            <option value="SE">Sergipe</option>
-            <option value="TO">Tocantins</option>
-          </select>
-          <label class="ml-3" for="inputEstado">Estado</label>
-        </div>
-        <div class="form-floating form-group col-md-2">
-          <input
-            type="cep"
-            class="form-control"
-            formControlName="CEP"
-            id="inputCEP"
-            placeholder="Informe seu CEP"
-          />
-          <label class="ml-3" for="inputCEP">CEP</label>
-        </div>
-        <div
-          class="form-floating form-group col-md-5"
-          [ngClass]="aplicaCss('profissao')"
-        >
-          <input
+            [ngClass]="aplicaCss('profissao')"
             formControlName="profissao"
             type="text"
             class="form-control"
@@ -207,10 +211,8 @@
             Não esqueça de colocar sua profissão, isso é importante!
           </small>
         </div>
-      </div>
 
-      <div class="row m-3 mb-4">
-        <div class="form-floating form-group col-md-2">
+        <div class="form-floating form-group col">
           <input
             formControlName="telefone"
             type="tel"
@@ -220,9 +222,24 @@
           />
           <label class="ml-3" for="inputTel">Telefone Celular</label>
         </div>
-        <div class="form-floating form-group col-md-2">
+        <div class="form-floating form-group col">
+          <input
+            formControlName="telefoneFx"
+            type="tel"
+            class="form-control"
+            id="inputTelFx"
+            placeholder="Informe telefone para Contato"
+          />
+          <label class="ml-3" for="inputTelFx">Telefone fixo</label>
+        </div>
+
+      </div>
+
+      <div class="row m-3 mb-4">
+
+        <div class="form-floating form-group col">
           <select class="form-control" id="inputEstadoCivil">
-            <option value="SemValor">Selecione</option>
+            <option value="null">Selecione</option>
             <option value="Solteiro">Solteiro</option>
             <option value="Casado">Casado</option>
             <option value="Divorciado">Divorciado</option>
@@ -230,11 +247,9 @@
           </select>
           <label class="ml-3" for="inputEstadoCivil">Estado Civil</label>
         </div>
-        <div
-          class="form-group form-floating col-md-4"
-          [ngClass]="aplicaCss('email')"
-        >
+        <div class="form-group form-floating col">
           <input
+            [ngClass]="aplicaCss('email')"
             formControlName="email"
             type="email"
             class="form-control"
@@ -253,14 +268,11 @@
             válido!
           </small>
         </div>
-        <div class="col-md-4 imgUrlPrincipal " >
-          <!-- <label for="formFile1" class="form-label mb-1"
-            >Adicione uma foto</label
-          > -->
+        <div class="col imgUrlPrincipal">
+
           <input
             class="form-control form-control-sm file"
-            
-            formControlName="imgUrlPrincipal"
+
             id="formFile1"
             type="file"
           />
@@ -268,8 +280,9 @@
       </div>
       <hr />
       <div class="row m-3 mb-4">
-        <div class="campo form-floating col" [ngClass]="aplicaCss('nomeIg')">
+        <div class="form-floating col">
           <input
+            [ngClass]="aplicaCss('nomeIg')"
             formControlName="nomeIg"
             type="text"
             id="inputNameIg"
@@ -287,16 +300,16 @@
             Precisamos saber qual a sua igreja!
           </small>
         </div>
-        <div class="campo form-floating col">
+        <div class="form-floating col">
           <input
             type="text"
             formControlName="pastor"
-            id="inputNameIg"
+            id="inputNamePr"
             class="form-control"
             placeholder="Informe o nome do seu Pastor"
             [ngClass]="aplicaCss('pastor')"
           />
-          <label class="ml-3" for="inputNameIg">Nome do Pastor</label>
+          <label class="ml-3" for="inputNamePr">Nome do Pastor</label>
           <small
             *ngIf="
               this.formulario.controls.nomeIg.invalid &&
@@ -320,13 +333,16 @@
           class="form-check-input px-3 py-2"
           type="checkbox"
           id="chekbox1"
+
           formControlName="chekbox1Profissao"
           (click)="setRadioProficional()"
         />
         <label class="form-check-label" for="chekbox1">
           Cooperando com o Movimento
-          <i style="color: green">Cuidado Integral do Líder</i> através da minha
-          <b>Profissão</b>.
+          <i style="color: green; margin-left: 5px; margin-right: 5px"
+            >Cuidado Integral do Líder</i
+          >
+          através da minha <b class="ml-1"> Profissão </b>.
         </label>
       </div>
 
@@ -334,13 +350,16 @@
         <input
           class="form-check-input px-3 py-2"
           type="checkbox"
+
           id="chekbox2"
           formControlName="chekbox2Intercessor"
         />
         <label class="form-check-label" for="chekbox2"
           >Cooperando com o Movimento
-          <i style="color: green">Cuidado Integral do Líder</i> como um
-          <b>Intercessor</b>.</label
+          <i style="color: green; margin-left: 5px; margin-right: 5px"
+            >Cuidado Integral do Líder</i
+          >
+          como um <b class="ml-1">Intercessor</b>.</label
         >
       </div>
 
@@ -348,13 +367,17 @@
         <input
           class="form-check-input px-3 py-2"
           type="checkbox"
+
           id="chekbox3"
           formControlName="chekbox3Cuidador"
           (click)="setRadioCuidador()"
         />
         <label class="form-check-label" for="chekbox3"
-          >Atuando como <i style="color: green">Pastor </i> 
-          <b> Cuidador</b>.</label
+          >Atuando como
+          <i style="color: green; margin-left: 5px; margin-right: 5px">
+            Pastor
+          </i>
+          <b> Cuidador </b>.</label
         >
       </div>
 
@@ -362,10 +385,11 @@
         <input
           class="form-check-input px-3 py-2"
           type="checkbox"
+
           id="chekbox4"
           formControlName="chekbox4"
         />
-        <label  class="form-check-label" for="chekbox4"
+        <label class="form-check-label" for="chekbox4"
           >Atuando como Discipulador, Mentor, Aconselheiro Bíblico
           <small>
             (Pastores, Diaconos, Líderes de Ministério, Membro da igreja local
@@ -375,7 +399,7 @@
       </div>
     </fieldset>
 
-    <fieldset class="mt-2" *ngIf="fieldsetProfissionaisFIF">
+    <fieldset class="mt-2 fieldsetIF pb-4" *ngIf="fieldsetProfissionaisFIF">
       <h5 class="mb-4 ml-4">
         Para quem deseja atuar através da sua Profissão:
       </h5>
@@ -407,10 +431,27 @@
       </div>
     </fieldset>
 
-    <fieldset class="mt-2" *ngIf="fieldsetCuidadoresFIF">
+    <fieldset class="mt-2 fieldsetIF pb-5" *ngIf="fieldsetCuidadoresFIF">
       <h5 class="mb-4 ml-4">Somente para Cuidadores:</h5>
 
-      <div class="row ml-4">
+      <div class="form-check form-switch mb-4">
+        <input
+          class="form-check-input px-3 py-2"
+          type="checkbox"
+
+          id="chekbox5"
+          formControlName="chekbox5Aconselhamento"
+        />
+        <label class="form-check-label" for="chekbox5"
+          >Possui Curso de
+          <b style="color: green; margin-left: 5px; margin-right: 5px"
+            >Aconselhamento Biblico
+          </b>
+          ?</label
+        >
+      </div>
+
+      <div class="row ml-4" formGroupName="imagesDocUrl">
         <div class="col-md-6">
           <label for="formFile2" class="form-label"
             >Anexe - RG (frente e verso)</label
@@ -419,7 +460,7 @@
             class="form-control file"
             id="formFile2"
             type="file"
-            formControlName="imgRG"
+
           />
         </div>
 
@@ -429,7 +470,7 @@
             class="form-control"
             id="formFile3"
             type="file"
-            formControlName="imgCPF"
+
           />
         </div>
 
@@ -453,7 +494,7 @@
             class="form-control"
             id="formFile4"
             type="file"
-            formControlName="imgCartaIgreja"
+           
           />
         </div>
       </div>
@@ -479,16 +520,3 @@
   </form>
 </div>
 
-<code>
-  <h5>status do campo email > {{ this.formulario.controls.email.status }}</h5>
-  <h5>
-    pristine do campo email> {{ this.formulario.controls.email.pristine }}
-  </h5>
-  <h5>touched do campo email> {{ this.formulario.controls.email.touched }}</h5>
-  <h5>
-    untouched do campo email> {{ this.formulario.controls.email.untouched }}
-  </h5>
-  <h5>errors do campo email> {{ this.formulario.controls.email.errors }}</h5>
-  <h5>dirty do campo email> {{ this.formulario.controls.email.dirty }}</h5>
-</code>
-<script type="text/javascript" src="js/bootstrap-filestyle.min.js"></script>
