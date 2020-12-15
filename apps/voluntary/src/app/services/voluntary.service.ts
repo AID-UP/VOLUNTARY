@@ -7,7 +7,7 @@ import {
 } from '@angular/common/http';
 import { Injectable, Pipe } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { map, retry, catchError } from 'rxjs/operators';
+import { map, retry, catchError, take } from 'rxjs/operators';
 
 @Injectable()
 export class VoluntaryService {
@@ -16,11 +16,13 @@ export class VoluntaryService {
 
   // pega todos os voluntários
   public getVolunteers(): Observable<VoluntaryModel[]> {
-    return this.http.get<VoluntaryModel[]>('/api/volunteers');
+    return this.http.get<VoluntaryModel[]>('/api/volunteers')
+    .pipe( take(1))
   }
   // Busca os dados do voluntário pelo seu ID
   public getVolunteersPorId(id: number): Observable<VoluntaryModel> {
-    return this.http.get<VoluntaryModel>(`/api/volunteers/${id}`);
+    return this.http.get<VoluntaryModel>(`/api/volunteers/${id}`)
+    .pipe(take(1))
   }
 
   // CAMPO DE BUSCA na tela principal (precisa de ajuste)
@@ -42,7 +44,8 @@ export class VoluntaryService {
   public saveVoluntary(voluntary: VoluntaryModel): Observable<VoluntaryModel> {
     return this.http
       .post<VoluntaryModel>(`/api/volunteers`, JSON.stringify(voluntary),this.httpOptions)
-      .pipe(retry(2), catchError(this.handleError));
+      .pipe(retry(2), catchError(this.handleError))
+      .pipe(take(1));
   }
 
   // Atualiza um voluntário
@@ -50,7 +53,8 @@ export class VoluntaryService {
     return this.http.put<VoluntaryModel>(`/api/volunteers/${voluntary.id}`,JSON.stringify(voluntary),
         this.httpOptions
       )
-      .pipe(retry(2), catchError(this.handleError));
+      .pipe(retry(2), catchError(this.handleError))
+      .pipe(take(1));
   }
 
   // deleta um voluntário
@@ -60,7 +64,8 @@ export class VoluntaryService {
         `/api/volunteers/${voluntary.id}`,
         this.httpOptions
       )
-      .pipe(retry(1), catchError(this.handleError));
+      .pipe(retry(1), catchError(this.handleError))
+      .pipe(take(1));
   }
 
   // Manipulação de erros
