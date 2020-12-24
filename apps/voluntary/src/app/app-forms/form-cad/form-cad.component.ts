@@ -1,72 +1,89 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { VoluntaryService } from 'src/app/services/voluntary.service';
 import { ActivatedRoute } from '@angular/router';
 import { VoluntaryModel } from '../../../../../../libs/data/src/lib/data';
+
+import { alertAnimation } from '../../services/alert.service';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-form-cad',
   templateUrl: './form-cad.component.html',
   styleUrls: ['../../app.component.css', './form-cad.component.css'],
   providers: [VoluntaryService],
+  animations: [alertAnimation],
 })
 export class FormCadComponent implements OnInit {
+  alertState: string = 'hide';
+
+  public Voluntary: VoluntaryModel;
   public formulario: FormGroup; // formulario em questão
-  // tslint:disable-next-line: max-line-length
-  public idVoluntary: number = this.route.snapshot.params.id; // se o formulario for acessado pelo perfil do voluntário essa variável recebe o id do voluntario
-  public VoluntaryData: VoluntaryModel; // se o formulario for acessado pelo perfil do voluntário essa variável recebe os dados do voluntario em questão, o do no id
 
   fieldsetProfissionaisFIF: boolean = false;
   fieldsetCuidadoresFIF: boolean = false;
 
+  alertSuccess: boolean = true;
+  alertDanger: boolean;
+  alertMessage: string;
+  alertActivated: any;
+  alertStyle: any;
+  style: any;
+
   constructor(
     private voluntaryService: VoluntaryService,
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private alertService: AlertService
   ) {}
 
+  public toggle(view?: String) {
+    this.alertState = this.alertService.toggle(view);
+  }
+
   ngOnInit(): void {
-    console.log('id do voluntário', this.idVoluntary);
-    if (this.idVoluntary) {
-      this.GetVoluntary(this.idVoluntary);
-    }
+    this.Voluntary = this.route.snapshot.data['voluntary'];
+    console.log('o que vem do guard', this.Voluntary);
 
     this.formulario = this.formBuilder.group({
-      id: null,
-      nome: [null, [Validators.required, Validators.minLength(3)]],
-      dataNascimento: [null, [Validators.required]],
-      sexo: [null, [Validators.required]],
+      id: this.Voluntary.id,
+      nome: [
+        this.Voluntary.nome,
+        [Validators.required, Validators.minLength(3)],
+      ],
+      dataNascimento: [this.Voluntary.dataNascimento, [Validators.required]],
+      sexo: [this.Voluntary.sexo, [Validators.required]],
       endereco: this.formBuilder.group({
-        rua: [null],
-        numero: [null],
-        bairro: [null],
-        cidade: [null],
-        complemento: [null],
-        uf: [null],
-        CEP: [null],
+        rua: [this.Voluntary.endereco.rua],
+        numero: [this.Voluntary.endereco.numero],
+        bairro: [this.Voluntary.endereco.bairro],
+        cidade: [this.Voluntary.endereco.cidade],
+        complemento: [this.Voluntary.endereco.complemento],
+        uf: [this.Voluntary.endereco.uf],
+        CEP: [this.Voluntary.endereco.CEP],
       }),
-      profissao: [null, [Validators.required]],
-      telefone: [null],
-      telefoneFx: [null],
-      email: [null, [Validators.required, Validators.email]],
-      nomeIg: [null, [Validators.required]],
-      pastor: [null, [Validators.required]],
-      chekbox1Profissao: [false],
-      chekbox2Intercessor: [false],
-      chekbox3Cuidador: [false],
-      chekbox4: [false],
-      chekbox5Aconselhamento: [false],
-      especialidade: [null],
-      servicoOferecido: [null],
-      imgUrlPrincipal: [null],
+      profissao: [this.Voluntary.profissao, [Validators.required]],
+      telefone: [this.Voluntary.telefone],
+      telefoneFx: [this.Voluntary.telefoneFx],
+      email: [this.Voluntary.email, [Validators.required, Validators.email]],
+      nomeIg: [this.Voluntary.nomeIg, [Validators.required]],
+      pastor: [this.Voluntary.pastor, [Validators.required]],
+      chekbox1Profissao: [this.Voluntary.chekbox1Profissao],
+      chekbox2Intercessor: [this.Voluntary.chekbox2Intercessor],
+      chekbox3Cuidador: [this.Voluntary.chekbox3Cuidador],
+      chekbox4: [this.Voluntary.chekbox4],
+      chekbox5Aconselhamento: [this.Voluntary.chekbox5Aconselhamento],
+      especialidade: [this.Voluntary.especialidade],
+      servicoOferecido: [this.Voluntary.servicoOferecido],
+      imgUrlPrincipal: [null], //this.Voluntary.imgUrlPrincipal
       imagesDocUrl: this.formBuilder.group({
-        imgRG: [null],
-        imgCPF: [null],
-        imgComprovResidencia: [null],
-        imgCartaIgreja: [null],
+        imgRG: [null], //this.Voluntary.imagesDocUrl.imgRG
+        imgCPF: [null], //this.Voluntary.imagesDocUrl.imgCPF
+        imgComprovResidencia: [null], //this.Voluntary.imagesDocUrl.imgComprovResidencia
+        imgCartaIgreja: [null], //this.Voluntary.imagesDocUrl.imgCartaIgreja
       }),
-      dataCad: [null],
-      status: ['ACTIVE'],
+      dataCad: [this.Voluntary.dataCad],
+      status: [this.Voluntary.status],
     });
   }
 
@@ -79,15 +96,18 @@ export class FormCadComponent implements OnInit {
       this.formulario.value.chekbox3Cuidador === true ? false : true;
   }
 
-   async onSubmit() {
+  async onSubmit() {
+    // this.activAlert('danger', 'minha mensagem erro')
     if (this.formulario.valid) {
-      if (!this.idVoluntary) {
+      //só entra neste if se passar por todas as validações
+      if (!this.Voluntary.id) {
+        // só entra neste if se não tiver id, pq se tiver id se trata de
         this.salveVoluntaryCTRL();
       } else {
         this.UpdateVoluntaryCTRL(this.formulario.value);
-
       }
     } else {
+      this.activAlert('danger', 'Atenção, preencha os campos obrigatórios');
       console.log('formulario invalido');
       Object.keys(this.formulario.controls).forEach((campo) => {
         const controle = this.formulario.get(campo);
@@ -96,51 +116,70 @@ export class FormCadComponent implements OnInit {
     }
   }
 
-  async GetVoluntary(idVoluntary: number) {
-    // pega esse id e busca os dados dele no banco
-    try {
-      this.voluntaryService
-        .getVolunteersPorId(idVoluntary).subscribe(
-          (resposta: any) => {
-            (this.VoluntaryData = resposta), //pega os dados do banco e guarda dentro da VoluntaryData para serem populados no formulário
-              this.populaDadosForm(this.VoluntaryData);
-          },
-          (error: any) => console.log(error)
-        )
-
-    } catch{
-      (error: any) => console.log(error)
-    }
-  }
   //atualiza os dados dos
   public UpdateVoluntaryCTRL(VoluntaryDataFormUpdated: VoluntaryModel) {
-    this.voluntaryService
-      .updateVoluntaryID(VoluntaryDataFormUpdated)
-      .subscribe((voluntary) =>{
+    this.voluntaryService.updateVoluntaryID(VoluntaryDataFormUpdated).subscribe(
+      (voluntary) => {
+        this.activAlert(
+          'success',
+          `Os dados do ${this.formulario.value.nome} foram alterados com sucesso`
+          );
 
-        alert(`Os dados do ${VoluntaryDataFormUpdated.nome} foram salvos com sucesso`)
+        console.log(`Os dados do ${this.Voluntary.nome} foram alterados com sucesso`);
+      },
+      (error) =>{
+        this.activAlert('danger', `Os dados do ${this.formulario.value.nome} não puderam ser alterados`)
 
-      }
-      );
+        console.error(
+          `Os dados do ${this.Voluntary.nome} não puderam ser alterados: => Relatório: ${error}`
+        )}
+    );
   }
-
-  // se não, cadastre como um novo voluntário
   public salveVoluntaryCTRL() {
     if (this.formulario !== undefined) {
       this.voluntaryService.saveVoluntary(this.formulario.value).subscribe(
         (voluntary) => {
-          console.log(voluntary);
-          // reseta formulário
-          this.formulario.reset();
+          this.activAlert(
+            'success',
+            `os dados de ${this.formulario.value.nome} foram cadastrados com sucesso!`
+          ),
+            console.log(
+              `Os dados do ${this.Voluntary.nome} foram salvos com sucesso`
+            ),
+            this.formulario.reset(); // reseta formulário
         },
-        (err: any) =>
-          alert(
-            `O voluntário não pode ser cadastrado, ocorreu o seguinte erro ${err}`
-          )
+        (error) => {
+          this.activAlert(
+            'danger',
+            'Por algum motivo os dados não puderam ser salvos'
+          );
+          console.error(
+            `Os dados do ${this.Voluntary.nome} não puderam ser salvos: => Relatório: ${error}`
+          );
+        }
       );
     }
   }
 
+  // FUNÇÕES DE CONTROLES DE ALERTS
+
+  public activAlert(typeAlert: string, mensagem: string) {
+    (this.alertState = this.alertService.toggle('show')),
+      this.alertService.content(mensagem),
+      (this.style = this.alertService.style(typeAlert))
+
+
+  }
+  // FUNÇÃO DE ESTILIZAÇÃO DE ALERTS
+  public typeStyle() {
+    let alertStyle = this.alertService.style('');
+    return {
+      success: alertStyle == 'success',
+      warning: alertStyle == 'warning',
+      information: alertStyle == 'information',
+      danger: alertStyle == 'danger',
+    };
+  }
   // FUNÇÕES DE VALIDAÇÃO DE FORMULÁRIO
 
   public aplicaCss(campo: string | (string | number)[]) {
@@ -153,52 +192,5 @@ export class FormCadComponent implements OnInit {
     };
   }
 
-  public async populaDadosForm(dataVoluntary: VoluntaryModel) {
-
-    try {
-      await this.formulario.patchValue({
-        id: dataVoluntary.id,
-        nome: dataVoluntary.nome,
-        dataNascimento: dataVoluntary.dataNascimento,
-        sexo: dataVoluntary.sexo,
-        endereco:{
-        rua: dataVoluntary.endereco.rua,
-        numero: dataVoluntary.endereco.numero,
-        bairro: dataVoluntary.endereco.bairro,
-        cidade: dataVoluntary.endereco.cidade,
-        complemento: dataVoluntary.endereco.complemento,
-        uf: dataVoluntary.endereco.uf,
-        CEP: dataVoluntary.endereco.CEP,
-        },
-        profissao: dataVoluntary.profissao,
-        telefone: dataVoluntary.telefone,
-        telefoneFx: dataVoluntary.telefoneFx,
-        email: dataVoluntary.email,
-        nomeIg: dataVoluntary.nomeIg,
-        pastor: dataVoluntary.pastor,
-        chekbox1Profissao: dataVoluntary.chekbox1Profissao,
-        chekbox2Intercessor: dataVoluntary.chekbox2Intercessor,
-        chekbox3Cuidador: dataVoluntary.chekbox3Cuidador,
-        chekbox4: dataVoluntary.chekbox4,
-        chekbox5Aconselhamento: dataVoluntary.chekbox5Aconselhamento,
-        especialidade: dataVoluntary.especialidade,
-        servicoOferecido: dataVoluntary.servicoOferecido,
-        imagesDocUrl:{
-        imgRG: dataVoluntary.imagesDocUrl.imgRG,
-        imgCPF: dataVoluntary.imagesDocUrl.imgCPF,
-        imgComprovResidencia: dataVoluntary.imagesDocUrl.imgComprovResidencia,
-        imgCartaIgreja: dataVoluntary.imagesDocUrl.imgCartaIgreja,
-        },
-        dataCad: dataVoluntary.dataCad,
-        status: dataVoluntary.status,
-        imgUrlPrincipal: dataVoluntary.imgUrlPrincipal,
-      });
-    } catch (error) { console.log("DEU ERRO PARA POPULAR OS DADOS NO FORMULARIO:  ",error);
-    }
-  }
+  // quando o cliente clica para atualizar ou cadastrar um voluntário a aplicação chama o guard para
 }
-
-/*documentos de consulta
-      https: //www.ramosdainformatica.com.br/programacao/angularjs/como-usar-api-rest-com-httpclient-no-angular-8/
-      https: //medium.com/@fernandoevangelista_28291/consumindo-api-rest-com-httpclient-no-angular-8-62c5d733ffb6
-*/

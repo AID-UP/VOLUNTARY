@@ -8,21 +8,21 @@
             class="list-group-item d-flex align-items-center bg-success text-white"
           >
             <div class="justify-content-start">
-              <div *ngIf="voluntary">
-                <img class="" [src]="voluntary.imgUrlPrincipal" alt="" />
+              <div *ngIf="Voluntary">
+                <img class="" [src]="Voluntary.imgUrlPrincipal" alt="" />
               </div>
             </div>
             <div class="dadosCabec d-flex flex-column">
-              <h1 class="ml-4">{{ voluntary.nome }}</h1>
-              <h3 class="ml-4">{{ voluntary.dataNascimento | dataIdade }}</h3>
+              <h1 class="ml-4">{{ Voluntary.nome }}</h1>
+              <h3 class="ml-4">{{ Voluntary.dataNascimento | dataIdade }}</h3>
               <div class="d-felx ml-4 mb-n4">
                 <small class="text-white text"
-                  >Telefone: {{ voluntary.telefone }},
+                  >Telefone: {{ Voluntary.telefone }},
                 </small>
                 <small class="text-white ml-3"
-                  >{{ voluntary.endereco.rua }}, número
-                  {{ voluntary.endereco.numero }}, Cidade
-                  {{ voluntary.endereco.cidade }}
+                  >{{ Voluntary.endereco.rua }}, número
+                  {{ Voluntary.endereco.numero }}, Cidade
+                  {{ Voluntary.endereco.cidade }}
                 </small>
               </div>
             </div>
@@ -35,7 +35,7 @@
               class="list-group-item list-group-item-action flex-column align-items-start"
             >
               <div class="d-flex w-100 justify-content-between"></div>
-              <p class="mb-1">{{ voluntary.nomeIg }}</p>
+              <p class="mb-1">{{ Voluntary.nomeIg }}</p>
               <div class="d-felx"></div>
             </div>
           </div>
@@ -48,7 +48,7 @@
               <div class="d-flex w-100 justify-content-between">
                 <h4 class="mb-1">Pastor</h4>
               </div>
-              <p class="mb-1">{{ voluntary.pastor }}</p>
+              <p class="mb-1">{{ Voluntary.pastor }}</p>
               <div class="d-felx"></div>
             </div>
           </div>
@@ -62,10 +62,8 @@
               <div class="d-flex w-100 justify-content-between">
                 <h4 class="mb-1">Outras Informações</h4>
               </div>
-              <p class="mb-1">
-                Atua como: {{ voluntary.servicoOferecido  }}
-              </p>
-              <p class="mb-1">Email: {{ voluntary.email}}</p>
+              <p class="mb-1">Atua como: {{ Voluntary.servicoOferecido }}</p>
+              <p class="mb-1">Email: {{ Voluntary.email }}</p>
               <div class="d-felx"></div>
             </div>
           </div>
@@ -76,7 +74,7 @@
           <button
             type="submit"
             class="btn btn-success btn-lg"
-            [routerLink]="['/formulario', voluntary.id]"
+            [routerLink]="['/formulario', Voluntary.id]"
           >
             Atualizar
           </button>
@@ -90,3 +88,5 @@
     </div>
   </div>
 </div>
+
+

@@ -16,6 +16,7 @@ import { AppFormsModule } from './app-forms/app-forms.module';
 
 import { CommonModule } from '@angular/common';
 import { VoluntaryService } from './services/voluntary.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 
 
@@ -28,7 +29,8 @@ import { VoluntaryService } from './services/voluntary.service';
     MypageComponent,
     Erro404Component,
 
-  ],
+
+   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppFormsModule,
@@ -38,6 +40,9 @@ import { VoluntaryService } from './services/voluntary.service';
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
+    BrowserAnimationsModule
+
+
   ],
   providers: [VoluntaryService, FiltroPersonalizadoService],
   bootstrap: [AppComponent],

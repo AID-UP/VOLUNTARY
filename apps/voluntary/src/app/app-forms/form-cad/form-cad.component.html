@@ -1,12 +1,17 @@
 <div class="container mt-5 mb-5">
-  <h1 *ngIf="!idVoluntary">Novo Cadastro</h1>
-  <h1 *ngIf="idVoluntary">Editar Cadastro</h1>
+  <div [@torrada]="alertState" class="alert" [ngClass]="typeStyle()">
+    <button (click)="toggle('hide')" class="closebtn">x</button>
+    <p id="text"></p>
+  </div>
+
+  <h1 *ngIf="!Voluntary.id">Novo Cadastro</h1>
+  <h1 *ngIf="Voluntary.id">Editar Cadastro</h1>
   <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
     <hr />
 
     <fieldset class="form-group">
       <h4 class="mb-4 ml-4">Voluntário</h4>
-      <div class="row  d-flex-wrap m-3 mb-4">
+      <div class="row d-flex-wrap m-3 mb-4">
         <div class="col form-floating">
           <input
             [ngClass]="aplicaCss('nome')"
@@ -48,7 +53,7 @@
         </div>
         <div class="col-auto radioSexo">
           <div
-            class="custom-control custom-radio "
+            class="custom-control custom-radio"
             [ngClass]="aplicaCss('sexo')"
           >
             <input
@@ -88,7 +93,6 @@
         </div>
       </div>
       <div formGroupName="endereco">
-
         <div class="row m-3 mb-4">
           <div class="form-floating campo form-group col">
             <input
@@ -120,7 +124,6 @@
             />
             <label class="ml-3" class="ml-3" for="inputBairro">Bairro</label>
           </div>
-
         </div>
 
         <div class="row m-3 mb-4">
@@ -188,7 +191,6 @@
             <label class="ml-3" for="inputCEP">CEP</label>
           </div>
         </div>
-
       </div>
       <div class="row m-3 mb-4">
         <div class="form-floating form-group col">
@@ -232,11 +234,9 @@
           />
           <label class="ml-3" for="inputTelFx">Telefone fixo</label>
         </div>
-
       </div>
 
       <div class="row m-3 mb-4">
-
         <div class="form-floating form-group col">
           <select class="form-control" id="inputEstadoCivil">
             <option value="null">Selecione</option>
@@ -269,10 +269,9 @@
           </small>
         </div>
         <div class="col imgUrlPrincipal">
-
           <input
             class="form-control form-control-sm file"
-
+            formControlName="imgUrlPrincipal"
             id="formFile1"
             type="file"
           />
@@ -325,7 +324,7 @@
 
     <hr />
 
-    <fieldset>
+    <fieldset class="d-flex flex-column">
       <h4 class="mb-4 ml-4">Desejo participar da Rede de Apoio:</h4>
 
       <div class="form-check form-switch">
@@ -333,7 +332,6 @@
           class="form-check-input px-3 py-2"
           type="checkbox"
           id="chekbox1"
-
           formControlName="chekbox1Profissao"
           (click)="setRadioProficional()"
         />
@@ -350,7 +348,6 @@
         <input
           class="form-check-input px-3 py-2"
           type="checkbox"
-
           id="chekbox2"
           formControlName="chekbox2Intercessor"
         />
@@ -367,7 +364,6 @@
         <input
           class="form-check-input px-3 py-2"
           type="checkbox"
-
           id="chekbox3"
           formControlName="chekbox3Cuidador"
           (click)="setRadioCuidador()"
@@ -385,7 +381,6 @@
         <input
           class="form-check-input px-3 py-2"
           type="checkbox"
-
           id="chekbox4"
           formControlName="chekbox4"
         />
@@ -399,7 +394,10 @@
       </div>
     </fieldset>
 
-    <fieldset class="mt-2 fieldsetIF pb-4" *ngIf="fieldsetProfissionaisFIF">
+    <fieldset
+      class="mt-2 fieldsetIF pb-4"
+      *ngIf="Voluntary.chekbox1Profissao || fieldsetProfissionaisFIF"
+    >
       <h5 class="mb-4 ml-4">
         Para quem deseja atuar através da sua Profissão:
       </h5>
@@ -431,14 +429,16 @@
       </div>
     </fieldset>
 
-    <fieldset class="mt-2 fieldsetIF pb-5" *ngIf="fieldsetCuidadoresFIF">
+    <fieldset
+      class="mt-2 fieldsetIF pb-5"
+      *ngIf="Voluntary.chekbox3Cuidador || fieldsetCuidadoresFIF"
+    >
       <h5 class="mb-4 ml-4">Somente para Cuidadores:</h5>
 
       <div class="form-check form-switch mb-4">
         <input
           class="form-check-input px-3 py-2"
           type="checkbox"
-
           id="chekbox5"
           formControlName="chekbox5Aconselhamento"
         />
@@ -460,7 +460,7 @@
             class="form-control file"
             id="formFile2"
             type="file"
-
+            formControlName="imgRG"
           />
         </div>
 
@@ -470,7 +470,7 @@
             class="form-control"
             id="formFile3"
             type="file"
-
+            formControlName="imgCPF"
           />
         </div>
 
@@ -494,7 +494,7 @@
             class="form-control"
             id="formFile4"
             type="file"
-           
+            formControlName="imgCartaIgreja"
           />
         </div>
       </div>
@@ -505,14 +505,14 @@
       <button
         type="submit"
         class="btn btn-success btn-lg pr-5 pl-5"
-        *ngIf="idVoluntary"
+        *ngIf="Voluntary.id"
       >
         Salvar dados Alterados
       </button>
       <button
         type="submit"
         class="btn btn-success btn-lg pr-5 pl-5"
-        *ngIf="!idVoluntary"
+        *ngIf="!Voluntary.id"
       >
         Cadastrar Voluntário
       </button>
@@ -520,3 +520,26 @@
   </form>
 </div>
 
+<!-- <ng-template *ngIf="alertSuccess">
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Excelente!</strong> {{alertMessage}}
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+</ng-template>
+
+<ng-template *ngIf="alertDanger">
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>Atenção!</strong> {{alertMessage}}
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+</ng-template> -->
