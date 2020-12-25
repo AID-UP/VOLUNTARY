@@ -168,6 +168,10 @@ export class FormCadComponent implements OnInit {
       this.alertService.content(mensagem),
       (this.style = this.alertService.style(typeAlert))
 
+      setTimeout(() => {  //fecha o alert após 7 segundos 
+        this.toggle('hide')
+      }, 7000);
+
 
   }
   // FUNÇÃO DE ESTILIZAÇÃO DE ALERTS
