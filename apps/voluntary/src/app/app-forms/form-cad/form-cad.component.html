@@ -1,7 +1,8 @@
 <div class="container mt-5 mb-5">
-  <div [@torrada]="alertState" class="alert" [ngClass]="typeStyle()">
-    <button (click)="toggle('hide')" class="closebtn">x</button>
+  <div [@torrada]="alertState" class="alert">
+    <div [ngClass]="typeStyle()" class="borderAlert"></div>
     <p id="text"></p>
+    <button (click)="toggle('hide')" class="closebtn">x</button>
   </div>
 
   <h1 *ngIf="!Voluntary.id">Novo Cadastro</h1>

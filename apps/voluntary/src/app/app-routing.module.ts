@@ -6,6 +6,8 @@ import { Erro404Component } from './erro404/erro404.component';
 import { FormCadComponent } from './app-forms/form-cad/form-cad.component';
 import { FiltrosComponent } from './app-forms/filtros/filtros.component';
 import { FormCadVolunteersResolverGuard } from './app-forms/guards/form-cad-volunteers-resolver.guard';
+import { LoginComponent } from './app-forms/login/login.component';
+import { ListVolunteersComponent } from './ListVolunteers/ListVolunteers.component';
 
 const routes: Routes = [];
 
@@ -13,8 +15,10 @@ const routes: Routes = [];
   imports: [
     RouterModule.forRoot(
       [
-        { path: '', redirectTo: 'ListVolunteers', pathMatch: 'full' },
-        { path: 'ListVolunteers', component: MainComponent },
+        { path: '', redirectTo: 'Dashboard', pathMatch: 'full' },
+        { path: 'Dashboard', component: MainComponent },
+        { path: 'LoginUser', component: LoginComponent },
+        { path: 'ListVolunteers', component: ListVolunteersComponent },
         {
           path: 'voluntary/:id',
           component: MypageComponent,

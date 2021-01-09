@@ -5,10 +5,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
 import { FiltrosComponent } from './filtros/filtros.component';
 import { DataIdadePipe } from '../pipes/data-idade.pipe';
+import { LoginComponent } from './login/login.component';
+
 
 
 @NgModule({
-  declarations: [FiltrosComponent, FormCadComponent, DataIdadePipe],
+  declarations: [FiltrosComponent, FormCadComponent, DataIdadePipe, LoginComponent],
   imports: [CommonModule, FormsModule, AppRoutingModule, ReactiveFormsModule],
   exports: [FiltrosComponent, FormCadComponent, DataIdadePipe],
 })

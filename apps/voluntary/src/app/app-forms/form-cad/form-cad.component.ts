@@ -42,8 +42,8 @@ export class FormCadComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.Voluntary = this.route.snapshot.data['voluntary'];
-    console.log('o que vem do guard', this.Voluntary);
+    this.Voluntary = this.route.snapshot.data['voluntary']; // recebe os dados capturados do guard e guarda na variável voluntary
+    // console.log('o que vem do guard', this.Voluntary);
 
     this.formulario = this.formBuilder.group({
       id: this.Voluntary.id,
@@ -87,26 +87,26 @@ export class FormCadComponent implements OnInit {
     });
   }
 
-  setRadioProficional() {
+  setRadioProficional() { // nos casos em que está sendo feito a atualização de um formulário, é verificado se o radio está ativo e ativa o o radio do fomulário que será atualizado
     this.fieldsetProfissionaisFIF =
       this.formulario.value.chekbox1Profissao === true ? false : true;
   }
-  setRadioCuidador() {
+  setRadioCuidador() {  // nos casos em que está sendo feito a atualização de um formulário, é verificado se o radio está ativo e ativa o o radio do fomulário que será atualizado
+    this.fieldsetProfissionaisFIF =
     this.fieldsetCuidadoresFIF =
       this.formulario.value.chekbox3Cuidador === true ? false : true;
   }
 
-  async onSubmit() {
-    // this.activAlert('danger', 'minha mensagem erro')
-    if (this.formulario.valid) {
-      //só entra neste if se passar por todas as validações
-      if (!this.Voluntary.id) {
-        // só entra neste if se não tiver id, pq se tiver id se trata de
-        this.salveVoluntaryCTRL();
+  async onSubmit() {  // função executada no clicar do botão principal
+
+    if (this.formulario.valid) {  //só entra neste if se passar por todas as validações
+
+      if (!this.Voluntary.id) {  // só entra neste if se não tiver id, pq se tiver id se trata de uma atualização de cadastro
+        this.salveVoluntaryCTRL();  // função que cria um novo voluntário nas bases de dados
       } else {
-        this.UpdateVoluntaryCTRL(this.formulario.value);
+        this.UpdateVoluntaryCTRL(this.formulario.value); // função que atualiza os dados de uma base existente
       }
-    } else {
+    } else {  // se não passar pelas validações
       this.activAlert('danger', 'Atenção, preencha os campos obrigatórios');
       console.log('formulario invalido');
       Object.keys(this.formulario.controls).forEach((campo) => {
@@ -168,7 +168,7 @@ export class FormCadComponent implements OnInit {
       this.alertService.content(mensagem),
       (this.style = this.alertService.style(typeAlert))
 
-      setTimeout(() => {  //fecha o alert após 7 segundos 
+      setTimeout(() => {  //fecha o alert após 7 segundos
         this.toggle('hide')
       }, 7000);
 
@@ -192,7 +192,7 @@ export class FormCadComponent implements OnInit {
         this.formulario.get(campo).invalid &&
         (this.formulario.get(campo).touched ||
           this.formulario.get(campo).dirty),
-      'is-valid': this.formulario.get(campo).valid,
+      'is-valid': this.formulario.get(campo).valid
     };
   }
 

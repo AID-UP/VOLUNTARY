@@ -7,4 +7,26 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'voluntary';
+
+
+  toggledSideBar: boolean=false
+
+  constructor(
+
+  ) {}
+
+  ngOnInit(): void {
+
+
+  }
+
+
+
+  // side bar
+
+  public openSideBar(event?:Event) {
+      event.preventDefault();
+       this.toggledSideBar = !this.toggledSideBar
+    };
+
 }

@@ -1,3 +1,4 @@
+// Este service controla o comportamento e seta os estilos dos alerts. estes alertes tem sua aparência configurado pelo css do componente
 import { Injectable } from '@angular/core';
 import {
   trigger,
@@ -49,7 +50,7 @@ export class AlertService {
         this.alertState = 'hide';
       }
     }
-    
+
 
 
     return this.alertState;

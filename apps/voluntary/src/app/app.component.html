@@ -1,10 +1,47 @@
-<app-header></app-header>
-<div class="app container md-4">
- 
-    <router-outlet></router-outlet>
+ <div id="wrapper" class="" [ngClass]="{'toggled': toggledSideBar == true, ' ': false}" >
+
+  <!-- Sidebar -->
+  <a href="#menu-toggle" class="btn btn-default" id="menu-toggle" (click)="openSideBar($event)" >Toggle Menu </a>
+  <div id="sidebar-wrapper">
+      <ul class="sidebar-nav">
+          <li class="sidebar-brand">
+              <a href="#">
+                  Start Bootstrap
+              </a>
+          </li>
+          <li>
+              <a routerLink="/Dashboard">Dashboard</a>
+          </li>
+          <li>
+              <a routerLink="/ListVolunteers">Voluntários</a>
+          </li>
+          <li>
+              <a href="#">Overview</a>
+          </li>
+          <li>
+              <a href="#">Events</a>
+          </li>
+          <li>
+              <a href="#">About</a>
+          </li>
+          <li>
+              <a href="#">Services</a>
+          </li>
+          <li>
+              <a href="#">Contact</a>
+          </li>
+      </ul>
+  </div>
+  <!-- /#sidebar-wrapper -->
+
+  <!-- Page Content -->
+  <div id="page-content-wrapper">
+      <div class="container-fluid">
+        <router-outlet></router-outlet>
+      </div>
+  </div>
+  <!-- /#page-content-wrapper -->
+
 </div>
-<app-footer></app-footer>
-<!-- <app-mypage [voluntaryId02]="main.voluntaryId02"></app-mypage>
-<app-main #main ></app-main> -->
 
 

@@ -17,6 +17,7 @@ import { AppFormsModule } from './app-forms/app-forms.module';
 import { CommonModule } from '@angular/common';
 import { VoluntaryService } from './services/voluntary.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { ListVolunteersComponent } from './ListVolunteers/ListVolunteers.component';
 
 
 
@@ -28,8 +29,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
     MainComponent,
     MypageComponent,
     Erro404Component,
-
-
+      ListVolunteersComponent
    ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
