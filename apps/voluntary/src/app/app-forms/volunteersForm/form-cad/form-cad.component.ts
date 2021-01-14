@@ -1,16 +1,17 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { VoluntaryService } from 'src/app/services/voluntary.service';
-import { ActivatedRoute } from '@angular/router';
-import { VoluntaryModel } from '../../../../../../libs/data/src/lib/data';
 
-import { alertAnimation } from '../../services/alert.service';
-import { AlertService } from '../../services/alert.service';
+import { ActivatedRoute } from '@angular/router';
+import { VoluntaryService } from 'src/app/volunteers/services/voluntary.service';
+import { VoluntaryModel } from '../../../../../../../libs/data/src/lib/data';
+
+import { alertAnimation } from '../../../services/alert.service';
+import { AlertService } from '../../../services/alert.service';
 
 @Component({
   selector: 'app-form-cad',
   templateUrl: './form-cad.component.html',
-  styleUrls: ['../../app.component.css', './form-cad.component.css'],
+  styleUrls: ['./../../../app.component.css', './form-cad.component.css'],
   providers: [VoluntaryService],
   animations: [alertAnimation],
 })

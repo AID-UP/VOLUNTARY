@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { VoluntaryService } from '../services/voluntary.service';
+
 import { ActivatedRoute } from '@angular/router';
-import { VoluntaryModel } from '../../../../../libs/data/src/lib/data';
+import { VoluntaryModel } from '../../../../../../libs/data/src/lib/data';
+import { VoluntaryService } from '../services/voluntary.service';
 
 @Component({
   selector: 'app-mypage',

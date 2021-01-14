@@ -1,4 +1,4 @@
-import { FiltroPersonalizadoService } from './services/filtro-personalizado.service';
+import { FiltroPersonalizadoService } from './app-forms/volunteersForm/filtro-personalizado.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -10,16 +10,16 @@ import { FooterComponent } from './footer/footer.component';
 import { MainComponent } from './main/main.component';
 import { HttpClientModule } from '@angular/common/http';
 
-import { MypageComponent } from './mypage/mypage.component';
 import { Erro404Component } from './erro404/erro404.component';
-import { AppFormsModule } from './app-forms/app-forms.module';
 
 import { CommonModule } from '@angular/common';
-import { VoluntaryService } from './services/voluntary.service';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { ListVolunteersComponent } from './ListVolunteers/ListVolunteers.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppFormsModule } from './app-forms/app-forms.module';
 
+import { LoginComponent } from './login/login.component';
+import { VoluntaryService } from './volunteers/services/voluntary.service';
+import { VolunteersModule } from './volunteers/volunteers.module';
 
 @NgModule({
   declarations: [
@@ -27,10 +27,9 @@ import { ListVolunteersComponent } from './ListVolunteers/ListVolunteers.compone
     HeaderComponent,
     FooterComponent,
     MainComponent,
-    MypageComponent,
     Erro404Component,
-      ListVolunteersComponent
-   ],
+    LoginComponent,
+  ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppFormsModule,
@@ -40,9 +39,8 @@ import { ListVolunteersComponent } from './ListVolunteers/ListVolunteers.compone
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    BrowserAnimationsModule
-
-
+    VolunteersModule,
+    BrowserAnimationsModule,
   ],
   providers: [VoluntaryService, FiltroPersonalizadoService],
   bootstrap: [AppComponent],

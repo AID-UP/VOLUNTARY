@@ -1,10 +1,10 @@
 import { trigger, AnimationTriggerMetadata, state, style, transition, animate } from '@angular/animations';
-import { AlertService } from './services/alert.service';
+import { AlertService } from './alert.service';
 let alertService = AlertService
 
 export let alertAnimation:AnimationTriggerMetadata ;
 
-if(alertService.danger == 'danger'){
+if(AlertService.danger == 'danger'){
   alertAnimation  = trigger('torrada',[
     state('show', style({
       backgroundColor:'red',

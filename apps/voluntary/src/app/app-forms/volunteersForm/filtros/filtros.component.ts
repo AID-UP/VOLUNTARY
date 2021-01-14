@@ -1,13 +1,13 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 
-import { FiltroPersonalizadoService } from 'src/app/services/filtro-personalizado.service';
-import { VoluntaryModel } from '../../../../../../libs/data/src/lib/data';
+import { FiltroPersonalizadoService } from 'src/app/app-forms/volunteersForm/filtro-personalizado.service';
+import { VoluntaryModel } from '../../../../../../../libs/data/src/lib/data';
 
 
 @Component({
   selector: 'app-filtros',
   templateUrl: './filtros.component.html',
-  styleUrls: ['../../app.component.css', './filtros.component.css'],
+  styleUrls: ['../../../app.component.css', './filtros.component.css'],
   providers: [FiltroPersonalizadoService],
 })
 export class FiltrosComponent implements OnInit, OnChanges {

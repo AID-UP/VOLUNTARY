@@ -6,7 +6,7 @@ import {
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, retry } from 'rxjs/operators';
-import { VoluntaryModel } from '../../../../../libs/data/src/lib/data';
+import { VoluntaryModel } from '../../../../../../libs/data/src/lib/data';
 
 @Injectable({
   providedIn: 'root',

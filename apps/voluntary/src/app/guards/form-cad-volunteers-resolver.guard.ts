@@ -6,8 +6,9 @@ import {
   Resolve,
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { VoluntaryModel } from '../../../../../../libs/data/src/lib/data';
-import { VoluntaryService } from '../../services/voluntary.service';
+import { VoluntaryModel } from '../../../../../libs/data/src/lib/data';
+import { VoluntaryService } from '../volunteers/services/voluntary.service';
+
 
 @Injectable({
   providedIn: 'root',

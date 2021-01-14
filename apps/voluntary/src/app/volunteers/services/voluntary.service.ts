@@ -1,4 +1,4 @@
-import { VoluntaryModel } from './../../../../../libs/data/src/lib/data';
+
 
 import {
   HttpClient,
@@ -8,6 +8,7 @@ import {
 import { Injectable, Pipe } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { map, retry, catchError, take } from 'rxjs/operators';
+import { VoluntaryModel } from '../../../../../../libs/data/src/lib/data';
 
 @Injectable()
 export class VoluntaryService {

@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-import { VoluntaryModel } from '../../../../../libs/data/src/lib/data';
-import { VoluntaryService } from '../services/voluntary.service';
+import { VoluntaryModel } from '../../../../../../libs/data/src/lib/data';
+import {VoluntaryService} from '../services/voluntary.service'
+
 
 @Component({
   selector: 'app-ListVolunteers',
-  templateUrl: './ListVolunteers.component.html',
-  styleUrls: ['./ListVolunteers.component.css'],
+  templateUrl: './listVolunteers.component.html',
+  styleUrls: ['./listVolunteers.component.css'],
   providers: [VoluntaryService]
 })
 export class ListVolunteersComponent implements OnInit {

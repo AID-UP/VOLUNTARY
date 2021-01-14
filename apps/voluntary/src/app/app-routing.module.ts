@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './main/main.component';
-import { MypageComponent } from './mypage/mypage.component';
+import { MypageComponent } from './volunteers/mypage/mypage.component';
 import { Erro404Component } from './erro404/erro404.component';
-import { FormCadComponent } from './app-forms/form-cad/form-cad.component';
-import { FiltrosComponent } from './app-forms/filtros/filtros.component';
-import { FormCadVolunteersResolverGuard } from './app-forms/guards/form-cad-volunteers-resolver.guard';
-import { LoginComponent } from './app-forms/login/login.component';
-import { ListVolunteersComponent } from './ListVolunteers/ListVolunteers.component';
+import { FormCadComponent } from './app-forms/volunteersForm/form-cad/form-cad.component';
+import { LoginComponent } from './login/login.component';
+import { FiltrosComponent } from './app-forms/volunteersForm/filtros/filtros.component';
+import { FormCadVolunteersResolverGuard } from './guards/form-cad-volunteers-resolver.guard';
+import { ListVolunteersComponent } from './volunteers/listVolunteers/listVolunteers.component';
 
 const routes: Routes = [];
 
