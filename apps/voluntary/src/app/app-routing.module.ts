@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { AdminUsersRoutingModule } from './adminUsers/adminUsers.routing.module'; 
 import { VolunteersRoutingModule } from './volunteers/volunteers.routing.module';
 import { AppFormsRoutingModule } from './app-forms/app-forms.routing.module';
 import { PartnersRoutingModule } from './partners/partners.routing.module';
@@ -19,6 +20,7 @@ const routes: Routes = [];
     AppFormsRoutingModule,
     PartnersRoutingModule,
     MissionariesRoutingModule,
+    AdminUsersRoutingModule,
     RouterModule.forRoot(
       [
         { path: '', redirectTo: 'Dashboard', pathMatch: 'full' },

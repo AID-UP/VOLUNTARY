@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MissionariesComponent } from './missionaries.component';
+
+import { MyPageMissionariesComponent } from './myPageMissionaries/myPageMissionaries.component';
+import { ListMissionariesComponent } from './listMissionaries/listMissionaries.component';
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
-  declarations: [MissionariesComponent]
+  imports: [CommonModule],
+  declarations: [ListMissionariesComponent, MyPageMissionariesComponent],
 })
-export class MissionariesModule { }
+export class MissionariesModule {}

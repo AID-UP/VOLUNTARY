@@ -1,47 +1,128 @@
- <div id="wrapper" class="" [ngClass]="{'toggled': toggledSideBar == true, ' ': false}" >
-
+<div
+  id="wrapper"
+  class=""
+  [ngClass]="{ toggled: toggledSideBar == true, ' ': false }"
+>
   <!-- Sidebar -->
-  <a href="#menu-toggle" class="btn btn-default" id="menu-toggle" (click)="openSideBar($event)" >Toggle Menu </a>
+
+  <button type="button" role="button" class="buttonSideBar" (click)="openSideBar($event)" [ngClass]="{ open: toggledSideBar == true, close: toggledSideBar == false }" > </button>
+  
+ 
+
   <div id="sidebar-wrapper">
-      <ul class="sidebar-nav">
-          <li class="sidebar-brand">
-              <a href="#">
-                  Start Bootstrap
-              </a>
-          </li>
-          <li>
-              <a routerLink="/Dashboard">Dashboard</a>
-          </li>
-          <li>
-              <a routerLink="/ListVolunteers">Voluntários</a>
-          </li>
-          <li>
-              <a href="#">Overview</a>
-          </li>
-          <li>
-              <a href="#">Events</a>
-          </li>
-          <li>
-              <a href="#">About</a>
-          </li>
-          <li>
-              <a href="#">Services</a>
-          </li>
-          <li>
-              <a href="#">Contact</a>
-          </li>
-      </ul>
+    <ul class="sidebar-nav">
+      <li class="sidebar-brand">
+        <a routerLink="/Dashboard"> Voluntary </a>
+      </li>
+      <div class="open-close-container">
+        <li>
+          <a routerLink="/Dashboard">Dashboard</a>
+        </li>
+
+        <li>
+          <a
+            routerLink="/listVolunteers"
+            (click)="toggleVolunters()"
+            class=""
+            [ngClass]="{
+              upArrow: expandableMenuVolunters == true,
+              downArrow: expandableMenuVolunters == false
+            }"
+            >Voluntários</a
+          >
+        </li>
+        <li
+          *ngIf="expandableMenuVolunters == true"
+          [@expandable]="expandableMenuVolunters ? 'closed' : 'open'"
+        >
+          <a routerLink="/formCadVoluntary">Cadastro </a>
+          <a routerLink="/filtros">Filtros</a>
+          <a class="disabled">Relatórios</a>
+        </li>
+
+        <li>
+          <a
+            routerLink="/listMissionaries"
+            (click)="toggleMissionaries()"
+            class=""
+            [ngClass]="{
+              upArrow: expandableMenuMissionaries == true,
+              downArrow: expandableMenuMissionaries == false
+            }"
+            >Missionários</a
+          >
+        </li>
+        <li
+          *ngIf="expandableMenuMissionaries == true"
+          [@expandable]="expandableMenuMissionaries ? 'closed' : 'open'"
+        >
+          <a routerLink="/formCadMissionaries">Cadastro </a>
+          <a class="disabled">Filtros</a>
+          <a class="disabled">Relatórios</a>
+        </li>
+
+        <li>
+          <a
+            routerLink="/listPartners"
+            (click)="togglePartners()"
+            class=""
+            [ngClass]="{
+              upArrow: expandableMenuPartners == true,
+              downArrow: expandableMenuPartners == false
+            }"
+            >Parceiros</a
+          >
+        </li>
+        <li
+          *ngIf="expandableMenuPartners == true"
+          [@expandable]="expandableMenuPartners ? 'closed' : 'open'"
+        >
+          <a routerLink="/formCadPartners">Cadastro </a>
+          <a class="disabled">Filtros</a>
+          <a class="disabled">Relatórios</a>
+        </li>
+        <li>
+          <a
+            routerLink="/listAdminUsers"
+            (click)="toggleAdminUsers()"
+            class=""
+            [ngClass]="{
+              upArrow: expandableMenuAdminUsers == true,
+              downArrow: expandableMenuAdminUsers == false
+            }"
+            >Usuários</a
+          >
+        </li>
+        <li
+          *ngIf="expandableMenuAdminUsers == true"
+          [@expandable]="expandableMenuAdminUsers ? 'closed' : 'open'"
+        >
+          <a routerLink="/formCadAdminUsers">Cadastro </a>
+          <a class="disabled">Filtros</a>
+          <a class="disabled">Relatórios</a>
+        </li>
+      </div>
+      <li>
+        <a href="#">Events</a>
+      </li>
+      <li>
+        <a href="#">About</a>
+      </li>
+      <li>
+        <a href="#">Services</a>
+      </li>
+      <li>
+        <a href="#">Contact</a>
+      </li>
+    </ul>
   </div>
   <!-- /#sidebar-wrapper -->
 
   <!-- Page Content -->
   <div id="page-content-wrapper">
-      <div class="container-fluid">
-        <router-outlet></router-outlet>
-      </div>
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
+    </div>
   </div>
   <!-- /#page-content-wrapper -->
-
 </div>
-
-

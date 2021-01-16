@@ -1,3 +1,4 @@
+import { AdminUsersModule } from './adminUsers/adminUsers.module';
 import { FiltroPersonalizadoService } from './app-forms/volunteersForm/filtro-personalizado.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -32,6 +33,7 @@ import { VolunteersModule } from './volunteers/volunteers.module';
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    AdminUsersModule,
     AppFormsModule,
     AppRoutingModule,
     HttpClientModule,

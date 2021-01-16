@@ -10,7 +10,7 @@ const routes: Routes = [];
 @NgModule({
   imports: [
     RouterModule.forChild([
-      { path: 'ListVolunteers', component: ListVolunteersComponent },
+      { path: 'listVolunteers', component: ListVolunteersComponent },
       {
         path: 'voluntary/:id',
         component: MypageComponent,

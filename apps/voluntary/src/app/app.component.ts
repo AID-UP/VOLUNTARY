@@ -1,15 +1,39 @@
+import { expandableMenu } from './services/alert-animation';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  animations:[expandableMenu]
 })
 export class AppComponent {
-  title = 'voluntary';
+  toggledSideBar: boolean=false;
+
+  expandableMenuVolunters = false;
+  expandableMenuMissionaries = false;
+  expandableMenuPartners = false;
+  expandableMenuAdminUsers =false
+ 
+
+   public toggleVolunters(){
+    this.expandableMenuVolunters = !this.expandableMenuVolunters;
+  }
+  public toggleMissionaries() {
+    this.expandableMenuMissionaries = !this.expandableMenuMissionaries;
+    
+  }
+  public togglePartners() {
+    this.expandableMenuPartners = !this.expandableMenuPartners;
+   
+  }
+  public toggleAdminUsers() {
+    this.expandableMenuAdminUsers = !this.expandableMenuAdminUsers;
+   
+  }
 
 
-  toggledSideBar: boolean=false
+  
 
   constructor(
 
@@ -29,4 +53,6 @@ export class AppComponent {
        this.toggledSideBar = !this.toggledSideBar
     };
 
+  
+   
 }

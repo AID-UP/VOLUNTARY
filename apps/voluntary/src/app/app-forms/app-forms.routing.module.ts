@@ -1,3 +1,6 @@
+import { FormCadPartnersComponent } from './partnersForm/formCadPartners/formCadPartners.component';
+import { FormCadMissionariesComponent } from './missionariesForm/formCadMissionaries/formCadMissionaries.component';
+import { FormCadAdminUsersComponent } from './adminUsersForm/formCadAdminUsers/formCadAdminUsers.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { Erro404Component } from '../erro404/erro404.component';
@@ -5,30 +8,71 @@ import { FormCadVolunteersResolverGuard } from '../guards/form-cad-volunteers-re
 import { FiltrosComponent } from './volunteersForm/filtros/filtros.component';
 import { FormCadComponent } from './volunteersForm/form-cad/form-cad.component';
 
-
-
 const routes: Routes = [];
 
 @NgModule({
   imports: [
     RouterModule.forChild([
- 
       {
-        path: 'formulario',
+        path: 'formCadAdminUsers',
+        component: FormCadAdminUsersComponent,
+        resolve: {
+          //  voluntary: FormCadAdminUsersResolverGuard,
+        },
+      },
+      {
+        path: 'formCadAdminUsers/:id',
+        component: FormCadAdminUsersComponent,
+        resolve: {
+          // voluntary: FormCadAdminUsersResolverGuard,
+        },
+      },
+
+      {
+        path: 'formCadMissionaries',
+        component: FormCadMissionariesComponent,
+        resolve: {
+          //  voluntary: FormCadAdminUsersResolverGuard,
+        },
+      },
+      {
+        path: 'formCadMissionaries/:id',
+        component: FormCadMissionariesComponent,
+        resolve: {
+          // voluntary: FormCadAdminUsersResolverGuard,
+        },
+      },
+
+      {
+        path: 'formCadPartners',
+        component: FormCadPartnersComponent,
+        resolve: {
+          //  voluntary: FormCadAdminUsersResolverGuard,
+        },
+      },
+      {
+        path: 'formCadPartners/:id',
+        component: FormCadPartnersComponent,
+        resolve: {
+          // voluntary: FormCadAdminUsersResolverGuard,
+        },
+      },
+
+      {
+        path: 'formCadVoluntary',
         component: FormCadComponent,
         resolve: {
           voluntary: FormCadVolunteersResolverGuard,
         },
       },
       {
-        path: 'formulario/:id',
+        path: 'formCadVoluntary/:id',
         component: FormCadComponent,
         resolve: {
           voluntary: FormCadVolunteersResolverGuard,
         },
       },
-      { path: 'filtros', component: FiltrosComponent }
-      
+      { path: 'filtros', component: FiltrosComponent },
     ]),
   ],
   exports: [RouterModule],

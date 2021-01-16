@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PartnersComponent } from './partners.component';
+
+import { MyPagePartnersComponent } from './myPagePartners/myPagePartners.component';
+import { ListPartnersComponent } from './listPartners/listPartners.component';
 
 @NgModule({
   imports: [
     CommonModule
   ],
-  declarations: [PartnersComponent]
+  declarations: [ListPartnersComponent, MyPagePartnersComponent]
 })
 export class PartnersModule { }

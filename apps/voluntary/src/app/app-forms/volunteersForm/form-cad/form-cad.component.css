@@ -54,7 +54,7 @@ font-size: 12px;
   margin-right: 5px;
   color: #dadadb;
   align-self: flex-start;
-
+  outline: none;
   float: right;
   font-size: 22px;
   line-height: 20px;
@@ -110,6 +110,7 @@ select {
 [type='radio'] {
   min-width: 20px !important;
   min-height: 20px !important;
+  margin-right: 15px;
 }
 [type='checkbox'] {
   min-width: 40px;
@@ -182,4 +183,9 @@ select {
     grid-column: 2;
     min-width: 100px;
   }
+
+  
+}
+label{
+ margin-left: 10px;
 }
