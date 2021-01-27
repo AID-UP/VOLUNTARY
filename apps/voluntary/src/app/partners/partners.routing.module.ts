@@ -1,3 +1,4 @@
+import { AuthGuard } from './../guards/auth.guard';
 import { MyPagePartnersComponent } from './myPagePartners/myPagePartners.component';
 import { ListPartnersComponent } from './listPartners/listPartners.component';
 import { NgModule } from '@angular/core';
@@ -10,10 +11,10 @@ const routes: Routes = [];
 @NgModule({
   imports: [
     RouterModule.forChild([
-      { path: 'listPartners', component: ListPartnersComponent },
+      { path: 'listPartners', component: ListPartnersComponent, canActivate:[AuthGuard] },
       {
         path: 'myPagePartners/:id',
-        component: MyPagePartnersComponent,
+        component: MyPagePartnersComponent, canActivate:[AuthGuard],
         resolve: {
           // voluntary: FormCadVolunteersResolverGuard,
         },

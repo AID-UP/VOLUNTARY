@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  API: '/'
+  porta:333,
+  API: 'http://localhost:'
 };

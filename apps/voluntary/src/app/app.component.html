@@ -1,15 +1,19 @@
-<div
+<div 
   id="wrapper"
   class=""
   [ngClass]="{ toggled: toggledSideBar == true, ' ': false }"
 >
   <!-- Sidebar -->
 
-  <button type="button" role="button" class="buttonSideBar" (click)="openSideBar($event)" [ngClass]="{ open: toggledSideBar == true, close: toggledSideBar == false }" > </button>
-  
- 
+  <button *ngIf="showMenu"
+    type="button"
+    role="button"
+    class="buttonSideBar"
+    (click)="openSideBar($event)"
+    [ngClass]="{ open: toggledSideBar == true, close: toggledSideBar == false }"
+  ></button>
 
-  <div id="sidebar-wrapper">
+  <div id="sidebar-wrapper" *ngIf="showMenu">
     <ul class="sidebar-nav">
       <li class="sidebar-brand">
         <a routerLink="/Dashboard"> Voluntary </a>
@@ -19,17 +23,19 @@
           <a routerLink="/Dashboard">Dashboard</a>
         </li>
 
-        <li>
-          <a
-            routerLink="/listVolunteers"
-            (click)="toggleVolunters()"
-            class=""
+        <li
+          class="d-flex justify-content-between li"
+          routerLink="/listVolunteers"
+          (click)="toggleVolunters()"
+        >
+          <a>Voluntários</a>
+          <div
+            style="margin-right: 10px"
             [ngClass]="{
               upArrow: expandableMenuVolunters == true,
               downArrow: expandableMenuVolunters == false
             }"
-            >Voluntários</a
-          >
+          ></div>
         </li>
         <li
           *ngIf="expandableMenuVolunters == true"
@@ -40,17 +46,20 @@
           <a class="disabled">Relatórios</a>
         </li>
 
-        <li>
-          <a
-            routerLink="/listMissionaries"
-            (click)="toggleMissionaries()"
+        <li
+          class="d-flex justify-content-between li"
+          routerLink="/listMissionaries"
+          (click)="toggleMissionaries()"
+        >
+          <a>Missionários</a>
+          <div
+            style="margin-right: 10px"
             class=""
             [ngClass]="{
               upArrow: expandableMenuMissionaries == true,
               downArrow: expandableMenuMissionaries == false
             }"
-            >Missionários</a
-          >
+          ></div>
         </li>
         <li
           *ngIf="expandableMenuMissionaries == true"
@@ -61,17 +70,20 @@
           <a class="disabled">Relatórios</a>
         </li>
 
-        <li>
-          <a
-            routerLink="/listPartners"
-            (click)="togglePartners()"
+        <li
+          class="d-flex justify-content-between li"
+          routerLink="/listPartners"
+          (click)="togglePartners()"
+        >
+          <a>Parceiros</a>
+          <div
+            style="margin-right: 10px"
             class=""
             [ngClass]="{
               upArrow: expandableMenuPartners == true,
               downArrow: expandableMenuPartners == false
             }"
-            >Parceiros</a
-          >
+          ></div>
         </li>
         <li
           *ngIf="expandableMenuPartners == true"
@@ -81,17 +93,20 @@
           <a class="disabled">Filtros</a>
           <a class="disabled">Relatórios</a>
         </li>
-        <li>
-          <a
-            routerLink="/listAdminUsers"
-            (click)="toggleAdminUsers()"
+        <li
+          class="d-flex justify-content-between li"
+          routerLink="/listAdminUsers"
+          (click)="toggleAdminUsers()"
+        >
+          <a>Usuários</a>
+          <div
+            style="margin-right: 10px"
             class=""
             [ngClass]="{
               upArrow: expandableMenuAdminUsers == true,
               downArrow: expandableMenuAdminUsers == false
             }"
-            >Usuários</a
-          >
+          ></div>
         </li>
         <li
           *ngIf="expandableMenuAdminUsers == true"

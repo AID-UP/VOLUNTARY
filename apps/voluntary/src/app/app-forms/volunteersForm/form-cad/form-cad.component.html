@@ -5,8 +5,8 @@
     <button (click)="toggle('hide')" class="closebtn">x</button>
   </div>
 
-  <h1 *ngIf="!Voluntary.id">Novo Cadastro</h1>
-  <h1 *ngIf="Voluntary.id">Editar Cadastro</h1>
+  <h1 *ngIf="!Voluntary._id">Novo Cadastro</h1>
+  <h1 *ngIf="Voluntary._id">Editar Cadastro</h1>
   <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
     <hr />
 
@@ -506,14 +506,14 @@
       <button
         type="submit"
         class="btn btn-success btn-lg pr-5 pl-5"
-        *ngIf="Voluntary.id"
+        *ngIf="Voluntary._id"
       >
         Salvar dados Alterados
       </button>
       <button
         type="submit"
         class="btn btn-success btn-lg pr-5 pl-5"
-        *ngIf="!Voluntary.id"
+        *ngIf="!Voluntary._id"
       >
         Cadastrar Voluntário
       </button>

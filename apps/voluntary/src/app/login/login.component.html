@@ -1,26 +1,31 @@
-<div class="container-fluid">
+<div class="">
   <div class="contents">
     <div class="titleAndForm">
       <div class="title mb-5 ">
         <img src="./../../../assets/logo.svg" alt="logo" class="logo" />
         <h1 class="login-title">Log in</h1>
       </div>
-      <form class="formLogin">
-        <div class="form-floating mb-3">
+      <form class="formLogin" [formGroup]="formulario" (ngSubmit)="onSubmit()">
+        
+        <div class="form-floating mb-3 ">
           <input
+          formControlName="nome"
             type="email"
             class="form-control"
             id="floatingInput"
             placeholder="name@example.com"
+    
           />
           <label for="floatingInput">Endereço de Email</label>
         </div>
         <div class="form-floating">
           <input
+          formControlName="password"
             type="password"
             class="form-control"
             id="floatingPassword"
             placeholder="Password"
+        
           />
           <label for="floatingPassword">Senha</label>
         </div>

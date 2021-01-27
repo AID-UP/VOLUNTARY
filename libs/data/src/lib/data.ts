@@ -1,5 +1,6 @@
+
 export interface VoluntaryModel {
-  id: number;
+  _id: string;
   nome: string;
   dataNascimento: string;
   sexo: string;
@@ -33,12 +34,6 @@ export interface VoluntaryModel {
     imgCartaIgreja: string;
   };
   dataCad: string;
-  status: VoluntaryStatus;
+  status: string;
 }
 
-export enum VoluntaryStatus {
-  ACTIVE = 'ACTIVE',
-  IN_CONTRACTING = 'IN_CONTRACTING',
-  INACTIVE = 'INACTIVE',
-  STAND_BY = 'STAND_BY',
-}

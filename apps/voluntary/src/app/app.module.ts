@@ -1,26 +1,34 @@
-import { AdminUsersModule } from './adminUsers/adminUsers.module';
-import { FiltroPersonalizadoService } from './app-forms/volunteersForm/filtro-personalizado.service';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthGuard } from './guards/auth.guard';
+import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
+
+
+import { AdminUsersModule } from './adminUsers/adminUsers.module';
+import { VolunteersModule } from './volunteers/volunteers.module';
+import { AppFormsModule } from './app-forms/app-forms.module';
+
+import { Erro404Component } from './erro404/erro404.component';
+import { MainComponent } from './main/main.component';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { MainComponent } from './main/main.component';
-import { HttpClientModule } from '@angular/common/http';
-
-import { Erro404Component } from './erro404/erro404.component';
-
-import { CommonModule } from '@angular/common';
-
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppFormsModule } from './app-forms/app-forms.module';
-
 import { LoginComponent } from './login/login.component';
+import { BirthdayListComponent } from './components/birthdayList/birthdayList.component';
+
+import { FiltroPersonalizadoService } from './app-forms/volunteersForm/filtro-personalizado.service';
 import { VoluntaryService } from './volunteers/services/voluntary.service';
-import { VolunteersModule } from './volunteers/volunteers.module';
+import { InteractionsBetweenUsersComponent } from './components/interactions-between-users/interactions-between-users.component';
+import { PeriodWithoutInteractionsComponent } from './components/period-without-interactions/period-without-interactions.component';
+import { AuthService } from './login/auth.service';
+
+
+
 
 @NgModule({
   declarations: [
@@ -30,7 +38,11 @@ import { VolunteersModule } from './volunteers/volunteers.module';
     MainComponent,
     Erro404Component,
     LoginComponent,
-  ],
+    BirthdayListComponent,
+    InteractionsBetweenUsersComponent,
+    PeriodWithoutInteractionsComponent
+
+   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AdminUsersModule,
@@ -43,9 +55,10 @@ import { VolunteersModule } from './volunteers/volunteers.module';
     FormsModule,
     VolunteersModule,
     BrowserAnimationsModule,
+
   ],
-  providers: [VoluntaryService, FiltroPersonalizadoService],
+  providers: [VoluntaryService, FiltroPersonalizadoService, AuthService, AuthGuard],
   bootstrap: [AppComponent],
-  exports: [MainComponent],
+  exports: [MainComponent, BirthdayListComponent],
 })
 export class AppModule {}

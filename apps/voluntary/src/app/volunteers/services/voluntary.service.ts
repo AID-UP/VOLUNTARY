@@ -21,7 +21,7 @@ export class VoluntaryService {
     .pipe( take(1))
   }
   // Busca os dados do voluntário pelo seu ID
-  public getVolunteersPorId(id: number): Observable<VoluntaryModel> {
+  public getVolunteersPorId(id: string): Observable<VoluntaryModel> {
     return this.http.get<VoluntaryModel>(`/api/volunteers/${id}`)
     .pipe(take(1))
   }
@@ -44,14 +44,14 @@ export class VoluntaryService {
   // CADASTRO VOLUNTÁRIOS
   public saveVoluntary(voluntary: VoluntaryModel): Observable<VoluntaryModel> {
     return this.http
-      .post<VoluntaryModel>(`/api/volunteers`, JSON.stringify(voluntary),this.httpOptions)
+      .post<VoluntaryModel>(`/api/volunteers/ `, JSON.stringify(voluntary),this.httpOptions)
       .pipe(retry(2), catchError(this.handleError))
       .pipe(take(1));
   }
 
   // Atualiza um voluntário
   public updateVoluntaryID(voluntary: VoluntaryModel): Observable<VoluntaryModel> {
-    return this.http.put<VoluntaryModel>(`/api/volunteers/${voluntary.id}`,JSON.stringify(voluntary),
+    return this.http.put<VoluntaryModel>(`/api/volunteers/${voluntary._id}`,JSON.stringify(voluntary),
         this.httpOptions
       )
       .pipe(retry(2), catchError(this.handleError))
@@ -62,7 +62,7 @@ export class VoluntaryService {
   public deleteVoluntary(voluntary: VoluntaryModel) {
     return this.http
       .delete<VoluntaryModel>(
-        `/api/volunteers/${voluntary.id}`,
+        `/api/volunteers/${voluntary._id}`,
         this.httpOptions
       )
       .pipe(retry(1), catchError(this.handleError))

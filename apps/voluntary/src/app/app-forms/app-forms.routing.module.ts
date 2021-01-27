@@ -1,3 +1,4 @@
+import { AuthGuard } from './../guards/auth.guard';
 import { FormCadPartnersComponent } from './partnersForm/formCadPartners/formCadPartners.component';
 import { FormCadMissionariesComponent } from './missionariesForm/formCadMissionaries/formCadMissionaries.component';
 import { FormCadAdminUsersComponent } from './adminUsersForm/formCadAdminUsers/formCadAdminUsers.component';
@@ -22,7 +23,7 @@ const routes: Routes = [];
       },
       {
         path: 'formCadAdminUsers/:id',
-        component: FormCadAdminUsersComponent,
+        component: FormCadAdminUsersComponent, canActivate:[AuthGuard],
         resolve: {
           // voluntary: FormCadAdminUsersResolverGuard,
         },
@@ -37,7 +38,7 @@ const routes: Routes = [];
       },
       {
         path: 'formCadMissionaries/:id',
-        component: FormCadMissionariesComponent,
+        component: FormCadMissionariesComponent, canActivate:[AuthGuard],
         resolve: {
           // voluntary: FormCadAdminUsersResolverGuard,
         },
@@ -52,7 +53,7 @@ const routes: Routes = [];
       },
       {
         path: 'formCadPartners/:id',
-        component: FormCadPartnersComponent,
+        component: FormCadPartnersComponent, canActivate:[AuthGuard],
         resolve: {
           // voluntary: FormCadAdminUsersResolverGuard,
         },
@@ -67,12 +68,12 @@ const routes: Routes = [];
       },
       {
         path: 'formCadVoluntary/:id',
-        component: FormCadComponent,
+        component: FormCadComponent, canActivate:[AuthGuard],
         resolve: {
           voluntary: FormCadVolunteersResolverGuard,
         },
       },
-      { path: 'filtros', component: FiltrosComponent },
+      { path: 'filtros', component: FiltrosComponent, canActivate:[AuthGuard] },
     ]),
   ],
   exports: [RouterModule],

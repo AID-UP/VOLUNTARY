@@ -47,7 +47,7 @@ export class FormCadComponent implements OnInit {
     // console.log('o que vem do guard', this.Voluntary);
 
     this.formulario = this.formBuilder.group({
-      id: this.Voluntary.id,
+      _id: this.Voluntary._id,
       nome: [
         this.Voluntary.nome,
         [Validators.required, Validators.minLength(3)],
@@ -102,7 +102,7 @@ export class FormCadComponent implements OnInit {
 
     if (this.formulario.valid) {  //só entra neste if se passar por todas as validações
 
-      if (!this.Voluntary.id) {  // só entra neste if se não tiver id, pq se tiver id se trata de uma atualização de cadastro
+      if (!this.Voluntary._id) {  // só entra neste if se não tiver id, pq se tiver id se trata de uma atualização de cadastro
         this.salveVoluntaryCTRL();  // função que cria um novo voluntário nas bases de dados
       } else {
         this.UpdateVoluntaryCTRL(this.formulario.value); // função que atualiza os dados de uma base existente

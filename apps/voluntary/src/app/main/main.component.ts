@@ -1,13 +1,15 @@
 import { Component, OnInit, Injectable, Input } from '@angular/core';
 
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css'],
+  styleUrls: ['./main.component.css', './../../../../../node_modules/bootstrap-icons/font/bootstrap-icons.css'],
 
 })
 @Injectable()
 export class MainComponent implements OnInit {
+
 
   toggledSideBar: boolean=false
 

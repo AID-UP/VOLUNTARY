@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from '../guards/auth.guard';
 
 import { FormCadVolunteersResolverGuard } from '../guards/form-cad-volunteers-resolver.guard';
 import { ListVolunteersComponent } from './listVolunteers/listVolunteers.component';
@@ -10,10 +11,10 @@ const routes: Routes = [];
 @NgModule({
   imports: [
     RouterModule.forChild([
-      { path: 'listVolunteers', component: ListVolunteersComponent },
+      { path: 'listVolunteers', component: ListVolunteersComponent, canActivate:[AuthGuard] },
       {
         path: 'voluntary/:id',
-        component: MypageComponent,
+        component: MypageComponent, canActivate:[AuthGuard],
         resolve: {
           voluntary: FormCadVolunteersResolverGuard,
         },
