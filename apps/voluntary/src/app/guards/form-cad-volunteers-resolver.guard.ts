@@ -30,7 +30,7 @@ export class FormCadVolunteersResolverGuard implements Resolve<VoluntaryModel> {
     }
 
     return of({
-      _id: '',
+      _id: null,
       nome: '',
       dataNascimento: '',
       sexo: '',
