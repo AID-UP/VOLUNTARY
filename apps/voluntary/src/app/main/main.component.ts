@@ -4,7 +4,7 @@ import { Component, OnInit, Injectable, Input } from '@angular/core';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css', './../../../../../node_modules/bootstrap-icons/font/bootstrap-icons.css'],
+  styleUrls: ['./main.component.css'],
 
 })
 @Injectable()
