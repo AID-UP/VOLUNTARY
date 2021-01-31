@@ -29,6 +29,12 @@
     "voluntary-e2e": {
       "tags": [],
       "implicitDependencies": ["voluntary"]
+    },
+    "api-voluntary": {
+      "tags": []
+    },
+    "data": {
+      "tags": []
     }
   }
 }

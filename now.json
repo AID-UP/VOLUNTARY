@@ -1,0 +1,17 @@
+{
+    "version": 2,
+    "env": {
+      "MONGODB_URI": "@my-mongodb-uri"
+    },
+    "builds": [
+      { "src": "/dist/apps/api-voluntary/main.js", "use": "@now/node" },
+      { "src": "/dist/apps/voluntary/*", "use": "@now/static" }
+    ],
+    "routes": [
+      { "src": "/api-voluntary/(.*)", "dest": "/dist/apps/api-voluntary/main.js" },
+      { "handle": "filesystem" },
+      { "src": "/assets/(.*)", "dest": "/dist/apps/voluntary/assets/$1"},
+      { "src": "/(.*).(js|css|ico)", "dest": "/dist/apps/voluntary/$1.$2" },
+      { "src": "/(.*)", "dest": "/dist/apps/voluntary/index.html" }
+    ]
+  }

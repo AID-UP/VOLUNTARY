@@ -1,19 +1,34 @@
+import { AuthGuard } from './guards/auth.guard';
+import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { RouterModule} from '@angular/router'
+import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
+
+
+import { AdminUsersModule } from './adminUsers/adminUsers.module';
+import { VolunteersModule } from './volunteers/volunteers.module';
+import { AppFormsModule } from './app-forms/app-forms.module';
+
+import { Erro404Component } from './erro404/erro404.component';
+import { MainComponent } from './main/main.component';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { MainComponent } from './main/main.component';
-import { HttpClientModule} from '@angular/common/http'
+import { LoginComponent } from './login/login.component';
+import { BirthdayListComponent } from './components/birthdayList/birthdayList.component';
 
-import { MypageComponent } from './mypage/mypage.component';
-import { Erro404Component } from './erro404/erro404.component';
-import { DataIdadePipe } from './pipes/data-idade.pipe'
-import { AppFormsModule } from './app-forms/app-forms.module';
-import { FiltrosComponent } from './app-forms/filtros/filtros.component';
-import { ImgUrlPipe } from './pipes/img-url.pipe';
+import { FiltroPersonalizadoService } from './app-forms/volunteersForm/filtro-personalizado.service';
+import { VoluntaryService } from './volunteers/services/voluntary.service';
+import { InteractionsBetweenUsersComponent } from './components/interactions-between-users/interactions-between-users.component';
+import { PeriodWithoutInteractionsComponent } from './components/period-without-interactions/period-without-interactions.component';
+import { AuthService } from './login/auth.service';
+
+
+
 
 @NgModule({
   declarations: [
@@ -21,26 +36,29 @@ import { ImgUrlPipe } from './pipes/img-url.pipe';
     HeaderComponent,
     FooterComponent,
     MainComponent,
-    MypageComponent,
     Erro404Component,
-    DataIdadePipe,
-    FiltrosComponent,
-    ImgUrlPipe,
-  ],
+    LoginComponent,
+    BirthdayListComponent,
+    InteractionsBetweenUsersComponent,
+    PeriodWithoutInteractionsComponent
+
+   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    AdminUsersModule,
     AppFormsModule,
     AppRoutingModule,
     HttpClientModule,
-    RouterModule, 
-   
+    RouterModule,
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    VolunteersModule,
+    BrowserAnimationsModule,
 
   ],
-  providers: [],
+  providers: [VoluntaryService, FiltroPersonalizadoService, AuthService, AuthGuard],
   bootstrap: [AppComponent],
-  exports: [
-    
-  MainComponent
-  ],
+  exports: [MainComponent, BirthdayListComponent],
 })
 export class AppModule {}

@@ -18,12 +18,18 @@
             "tsConfig": "apps/voluntary/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "apps/voluntary/src/favicon.ico",
+              "apps/voluntary/src/logo.png",
               "apps/voluntary/src/assets"
             ],
-            "styles": ["apps/voluntary/src/styles.css"
+            "styles": [
+              "apps/voluntary/src/styles.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css"
+              
             ],
-            "scripts": [ ]
+            "scripts": [
+              "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+             
+            ]
           },
           "configurations": {
             "production": {
@@ -36,7 +42,7 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
+        
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -59,7 +65,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "voluntary:build"
+            "browserTarget": "voluntary:build",
+            "proxyConfig": "apps/voluntary/proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -116,6 +123,85 @@
           "options": {
             "tsConfig": ["apps/voluntary-e2e/tsconfig.e2e.json"],
             "exclude": ["**/node_modules/**", "!apps/voluntary-e2e/**/*"]
+          }
+        }
+      }
+    },
+    "api-voluntary": {
+      "root": "apps/api-voluntary",
+      "sourceRoot": "apps/api-voluntary/src",
+      "projectType": "application",
+      "prefix": "api-voluntary",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/api-voluntary",
+            "main": "apps/api-voluntary/src/main.ts",
+            "tsConfig": "apps/api-voluntary/tsconfig.app.json",
+            "assets": ["apps/api-voluntary/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/api-voluntary/src/environments/environment.ts",
+                  "with": "apps/api-voluntary/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "api-voluntary:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/api-voluntary/tsconfig.app.json",
+              "apps/api-voluntary/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/api-voluntary/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/api-voluntary/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "data": {
+      "root": "libs/data",
+      "sourceRoot": "libs/data/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/data/tsconfig.lib.json",
+              "libs/data/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/data/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/data/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }
