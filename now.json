@@ -1,7 +1,7 @@
 {
     "version": 2,
     "env": {
-      "MONGODB_URI": "@my-mongodb-uri"
+      "MONGODB_URI": " mongodb+srv://user01AIDUP:885522@aidup.or0ro.mongodb.net/CIM?retryWrites=true&w=majority"
     },
     "builds": [
       { "src": "/dist/apps/api-voluntary/main.js", "use": "@now/node" },
