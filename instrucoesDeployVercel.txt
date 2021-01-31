@@ -1,0 +1,15 @@
+para deploy utilizar comando 
+
+ng build --prod voluntary && ng build --prod api-voluntary && now --prod
+
+para configurar mongo 
+
+
+
+
+tutorial utilziado para implantar na vercel 
+
+https://dev.to/gridou/how-to-deploy-a-nx-workspace-angular-nestjs-easily-with-zeit-now-4039
+
+tutorial para configurar mongodb na vercel 
+https://vercel.com/guides/deploying-a-mongodb-powered-api-with-node-and-vercel
