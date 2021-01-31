@@ -846,8 +846,8 @@ function bootstrap() {
         app.setGlobalPrefix(globalPrefix);
         const port = process.env.PORT || 3333;
         yield app.listen(port, () => {
-            // Logger.log('Listening at http://localhost:' + port + '/' + globalPrefix);
-            _nestjs_common__WEBPACK_IMPORTED_MODULE_1__["Logger"].log('Listening at port:' + port);
+            _nestjs_common__WEBPACK_IMPORTED_MODULE_1__["Logger"].log('Listening at http://localhost:' + port + '/' + globalPrefix);
+            //  Logger.log('Listening at port:' + port); 
         });
     });
 }

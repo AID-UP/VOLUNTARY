@@ -11,13 +11,10 @@ import {MongooseModule} from '@nestjs/mongoose'
 
 @Module({
   imports: [
-
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'voluntary'),
-      exclude: ['/api*']
-    }),
-
-
+  ServeStaticModule.forRoot({
+    rootPath: join(__dirname, '..', 'voluntary'),
+    exclude: ['/api*']
+  }),
     MongooseModule.forRoot("mongodb+srv://user01AIDUP:885522@aidup.or0ro.mongodb.net/CIM?retryWrites=true&w=majority"),
     VolunteersModule
   ],
