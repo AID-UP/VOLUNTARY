@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 15);
+/******/ 	return __webpack_require__(__webpack_require__.s = 13);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -559,14 +559,8 @@ module.exports = require("@nestjs/core");
 /* harmony import */ var _Volunteers_Volunteers_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(10);
 /* harmony import */ var _nestjs_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1);
 /* harmony import */ var _nestjs_common__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_nestjs_common__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _nestjs_serve_static__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(13);
-/* harmony import */ var _nestjs_serve_static__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_nestjs_serve_static__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(14);
-/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _nestjs_mongoose__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(3);
-/* harmony import */ var _nestjs_mongoose__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_nestjs_mongoose__WEBPACK_IMPORTED_MODULE_7__);
-
-
+/* harmony import */ var _nestjs_mongoose__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(3);
+/* harmony import */ var _nestjs_mongoose__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_nestjs_mongoose__WEBPACK_IMPORTED_MODULE_5__);
 
 
 
@@ -578,11 +572,7 @@ let AppModule = class AppModule {
 AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_nestjs_common__WEBPACK_IMPORTED_MODULE_4__["Module"])({
         imports: [
-            _nestjs_serve_static__WEBPACK_IMPORTED_MODULE_5__["ServeStaticModule"].forRoot({
-                rootPath: Object(path__WEBPACK_IMPORTED_MODULE_6__["join"])(__dirname, '..', 'voluntary'),
-                exclude: ['/api*']
-            }),
-            _nestjs_mongoose__WEBPACK_IMPORTED_MODULE_7__["MongooseModule"].forRoot("mongodb+srv://user01AIDUP:885522@aidup.or0ro.mongodb.net/CIM?retryWrites=true&w=majority"),
+            _nestjs_mongoose__WEBPACK_IMPORTED_MODULE_5__["MongooseModule"].forRoot("mongodb+srv://user01AIDUP:885522@aidup.or0ro.mongodb.net/CIM?retryWrites=true&w=majority"),
             _Volunteers_Volunteers_module__WEBPACK_IMPORTED_MODULE_3__[/* VolunteersModule */ "a"]
         ],
         controllers: [_app_controller__WEBPACK_IMPORTED_MODULE_2__[/* AppController */ "a"]],
@@ -801,25 +791,13 @@ VolunteersController = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])(
 
 /***/ }),
 /* 13 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = require("@nestjs/serve-static");
+module.exports = __webpack_require__(14);
+
 
 /***/ }),
 /* 14 */
-/***/ (function(module, exports) {
-
-module.exports = require("path");
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(16);
-
-
-/***/ }),
-/* 16 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
